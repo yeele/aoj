@@ -27,10 +27,7 @@ def input_array():
     return (n, Ss)
 
 
-if __name__ == '__main__':
-    (n, Ss) = input_array()
-    #(n, Ss) = input_from_txt(1)
-    #print(n, Ss)
+def show_matrix(n, Ss):
     for i in range(n):
         vth = Ss[i][0]
         vd = Ss[i][1]
@@ -40,7 +37,10 @@ if __name__ == '__main__':
             if j in adjs: row.append(1)
             else: row.append(0)
         print(" ".join(map(str, row)))
-    #ret = get_set4(S, T)
-    #ret = get_set2(S, T)
-    #ret = get_set(S, T)
-    #print(len(ret))
+
+if __name__ == '__main__':
+    (n, Ss) = input_array()
+    #(n, Ss) = input_from_txt(1)
+    #print(n, Ss)
+    show_matrix(n, Ss)
+
