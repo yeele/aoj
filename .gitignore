@@ -1,0 +1,25 @@
+# this is comment
+
+# ignore all start with . in the root dir
+/.*
+
+# ignore all files and dir starting with .
+.*
+
+# ignore objects / middle output source
+*.class
+*.pyc
+*.o
+*.swp
+*.bak
+~*.*
+*.iml
+
+
+
+
+# but, I won't ignore following
+!.gitignore
+
+
+
