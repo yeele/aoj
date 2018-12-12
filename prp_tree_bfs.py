@@ -1,5 +1,3 @@
-#-*- coding: utf-8 -*-
-#https://www.pramp.com/challenge/MW75pP53wAtzNPVLPG2b
 #########################################################
 # CODE INSTRUCTIONS:                                    #
 # 1) The method findInOrderSuccessor you're asked      #

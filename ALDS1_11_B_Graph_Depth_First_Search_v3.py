@@ -147,7 +147,7 @@ def dfs_all(vertex:list):
                 v=vertex[i-1]
                 break
         if v != None: ts = dfs(v, ts)
-        time.sleep(1)
+        #time.sleep(1)
 
 
 

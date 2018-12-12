@@ -29,17 +29,31 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def find_in_order_successor(self, inputNode: Node):
+    def find_in_order_successor(self, inputNode):
+        #pass # your code goes here
+        # 1. Check if there is a right node for inputNode
+        # 2. Check if there is a parent for the inputNode
+
         if inputNode.right is not None:
-            # find smallest from sub tree
-            cur:Node = inputNode.right
-            if cur.left is None: return cur
-            else: return self.find_in_order_successor(cur.left)
+            # Find the smallest number from the righ Sub-tree and return the node
+
+            currentNode = inputNode.right
+
+            if currentNode.left is None:
+                return currentNode
+            else:
+                return currentNode.left
+
         else:
-            cur:Node = inputNode
-            while cur.parent.right == cur:
-                cur = cur.parent
-            return cur.parent
+            # Traverse to the top and if the left of the parent is equal to the currenNode then return the node.
+            currentNode = inputNode
+            parent = currentNode.parent
+
+            while (parent.right == currentNode):
+                currentNode = parent
+                parent = parent.parent
+
+            return parent
 
     # Given a binary search tree and a number, inserts a
     # new node with the given number in the correct place
@@ -104,19 +118,23 @@ bst.insert(25);
 bst.insert(5);
 bst.insert(12);
 bst.insert(11);
+bst.insert(10);
 bst.insert(14);
 
-# Get a reference to the node whose key is 9
-test = bst.getNodeByKey(12)
-test = bst.getNodeByKey(9)
-test = bst.getNodeByKey(14)
+def test(id):
+    # Get a reference to the node whose key is 9
+    test = bst.getNodeByKey(id)
 
-# Find the in order successor of test
-succ = bst.find_in_order_successor(test)
+    # Find the in order successor of test
+    succ = bst.find_in_order_successor(test)
 
-# Print the key of the successor node
-if succ is not None:
-    print ("\nInorder Successor of %d is %d " \
-           %(test.key , succ.key))
-else:
-    print ("\nInorder Successor doesn't exist")
+    # Print the key of the successor node
+    if succ is not None:
+        print ("Inorder Successor of %d is %d " \
+               %(test.key , succ.key))
+    else:
+        print ("Inorder Successor doesn't exist")
+
+test(12)
+test(11)
+test(9)
