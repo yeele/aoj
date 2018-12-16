@@ -49,20 +49,21 @@ class Verticies:
         self.parent = None
         self.weigth = 1
         self.score = sys.maxsize
-        self.visited = False
+        self.visited = []
         self.adjs = adjs
 
     def reset(self):
         self.parent = None
         self.score = sys.maxsize
-        self.visited = False
+        self.visited = []
 
     def visit(self, parent):
         logging.info("visiting id(%s)" % self.id)
-        self.visited = True
+        self.visited.append(parent)
+        #print("visit: self.visited : %s" % self.visited)
         parent_score = parent.score if parent else 0
         if self.score > parent_score + self.weigth:
-            self.score = parent_score + self.weigth
+            self.score = parent_score + self.weigth if parent else 0
             self.setParent(parent)
             logging.info("parent updated!!!!!! with self.id(%s) with parent.id(%s)" % (self.id, parent.id if parent else parent))
 
@@ -78,8 +79,23 @@ class Verticies:
             p = p.parent
         return d
 
+    def get_distance_to(self, dest):
+        # dest: Vertices
+        d = 0
+        p = self.parent
+        while p!= None:
+            d+=1
+            if p.id == dest.id: return d
+            p = p.parent
+        return -1
+
     def is_visited(self):
-        return self.visited
+        return len(self.visited) > 0
+
+    def is_visited_by(self, pre_verticies):
+        #print("is_visited_by self.id(%s) pre_verticies.id(%s)" % (self.id, pre_verticies.id if pre_verticies else pre_verticies))
+        #print("self.visited: %s" % self.visited)
+        return pre_verticies in self.visited
 
 
 def instanciate_vertex(V:list):
@@ -108,7 +124,8 @@ def bfs(vs: Verticies, pre: Verticies, ve: Verticies):
     logging.info("after : pre.score(%s) vs.weight(%s) vs.score(%s)" % (pre.score if pre else pre, vs.weigth, vs.score))
     if vs.id != ve.id:
         for next_v in vs.adjs:
-            bfs(next_v, vs, ve)
+            if not next_v.is_visited_by(vs):
+                bfs(next_v, vs, ve)
 
 
 
@@ -128,7 +145,9 @@ def find_shortest(vertex:list, id=1):
             break
 
     for v in vertex:
-        d = find_shortest_by_bfs(v_start, v)
+        logging.debug("===== start jorney to find distance for form %s to %s====" % (v_start.id, v.id))
+        find_shortest_by_bfs(v_start, v)
+        d = v.score if v.score != sys.maxsize else -1
         print("%s %s" % (v.id, d))
 
         for v in vertex: v.reset() # Reset everytime
@@ -141,12 +160,12 @@ if __name__ == '__main__':
     v２はベタ書きをします
     """
     logging.getLogger().setLevel(logging.ERROR)
-    #mode = "prod"
-    mode = "test"
+    mode = "prod"
+    #mode = "test"
     if mode == "test":
         #logging.getLogger().setLevel(logging.INFO)
-        logging.getLogger().setLevel(logging.DEBUG)
-        (n, Ss) = input_from_txt(1)
+        #logging.getLogger().setLevel(logging.DEBUG)
+        (n, Ss) = input_from_txt(3)
         show_matrix(n, Ss)
     else:
         (n, Ss) = input_array()
