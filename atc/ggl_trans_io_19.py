@@ -281,7 +281,7 @@ did not resolve with [[1,0],[1,0],[1,0],[1,0],[1,0],[1,0]], .123
 
 
 graph = [
-    [(-36, 19), (-41, 9), (-37, -3), (-39, 2), (-25, 16)],          # (-34, 19)
+    [(-36, 19), (-41, 9), (-37, -3), (-37, 2), (-25, 16)],          # (-34, 19)
     [(-33, 10), (-29, 11), (-33, 2), (-28, 6), (-29, 9), (-23, 9)],
     [(-23, -21), (-20, -15), (-8, -8), (-15, -18)],                 # (-24, -16) no edge, (-26, 15) no even a dot
     [(-4, 19), (-10, 5), (9, 11), (-6, 15), (-1, 6), (4, 12), (0, 20), (13, 9), (-7, -1)],
@@ -335,7 +335,11 @@ def traverse(cosmos: List[Stars]):
     ttl = 0
     logging.debug("traversing %s" % cosmos)
     for stars in cosmos:
+        #コスモス６個与えられたときは一つ目とする
+        #points.append(stars.stars[0])
+        #コスモス３個与えられたときは最初と最後する
         points.append(stars.stars[0])
+        points.append(stars.stars[-1])
         if pre_stars:
             distance = dist(pre_stars.stars[-1], stars.stars[0])
             logging.debug("dist from %s to %s is %s" % (pre_stars.stars[-1], stars.stars[0], distance))
@@ -352,11 +356,13 @@ def traverse(cosmos: List[Stars]):
     logging.debug("longest path is from %s to %s it's dist is %s" % (longest_points[0], longest_points[1], longest))
     stars_in_remains = get_stars_in_remains(longest_points[0], longest_points[1], graph)
     if stars_in_remains:
-        logging.info("//%s are %s" % (colored("stars_in_remains", "red"), stars_in_remains))
+        logging.error("//%s are %s" % (colored("stars_in_remains", "red"), stars_in_remains))
         depth = depth_in_ocean(stars_in_remains)
-        logging.info("//sum of depth_in_ocean, from %s to %s is %s" % (longest_points[0], longest_points[1], depth))
+        logging.error("//sum of depth_in_ocean, from %s to %s is %s" % (longest_points[0], longest_points[1], depth))
         ttl += depth
-    logging.warn("%s(%s, %s)" % (colored("sendTransmission", "green"), [[x, y] for x, y in points], ttl))
+        logging.error("%s(%s, %s)" % ("sendTransmission", [[x, y] for x, y in points], ttl))
+    else:
+        logging.warn("%s(%s, %s)" % ("sendTransmission", [[x, y] for x, y in points], ttl))
     return ttl
 
 
@@ -392,7 +398,8 @@ print("num of patterns is %s , i guess 64" % len(patterns))
 
 print("%s" % ('='*64))
 #logging.basicConfig(level=logging.DEBUG, format="%(message)s")
-logging.getLogger().setLevel(logging.INFO)
+#logging.getLogger().setLevel(logging.INFO)
+logging.getLogger().setLevel(logging.ERROR)
 for path in paths:
     xxx = [Stars(graph[index], reversed) for index, reversed in path]
     traverse(xxx)
@@ -408,3 +415,17 @@ print("%s" % ('='*64))
 both("de castel")
 both("I have seven, and you have six")
 both("I HAVE SEVEN, AND YOU HAVE SIX")
+
+
+indices = [0, 1, 2, 3, 4, 5]
+for i in indices:
+    for j in indices:
+        if j == i: continue
+        for k in indices:
+            if k == i or k ==j: continue
+            #print(i, j, k)
+            for l in (True, False):
+                for m in (True, False):
+                    for n in (True, False):
+                        traverse([Stars(graph[i], l), Stars(graph[j], m), Stars(graph[k], n)])
+
