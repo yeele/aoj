@@ -10,6 +10,7 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 """
 import re
+import itertools
 class Solution:
     def repeatedStringMatch(self, A, B):
         """
@@ -33,6 +34,7 @@ class Solution:
                 #print("B:%s" % B[idx+1:])
                 #print("B:%s" % B[idx+len(A):])
                 B = B[idx+len(A):]
+                #B = "".join(list(itertools.islice(B, idx+len(A), None)))
                 #print(found, B)
                 found += 1
                 post = B

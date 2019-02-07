@@ -35,6 +35,6 @@ def test_case2():
     return (slotsA, slotsB, dur)
 
 if __name__ == "__main__":
-    (slotsA, slotsB, dur) = test_case1()
+    (slotsA, slotsB, dur) = test_case2()
     ret = meeting_planner(slotsA, slotsB, dur)
     print(ret)
