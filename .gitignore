@@ -13,7 +13,7 @@
 *.swp
 *.bak
 ~*.*
-*.iml
+
 
 
 
@@ -22,4 +22,6 @@
 !.gitignore
 
 
+*.iml
+*.txt
 

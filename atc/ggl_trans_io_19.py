@@ -28,7 +28,16 @@ def g_encode(S, n = 1):
     #     if tmp > 122: tmp = (tmp % 122) + (60-1)
     #     ans += chr(tmp)
     # return ans
-    return "".join([chr(ord(s) + 13) for s in S])
+    #return "".join([chr(ord(s) + 13) for s in S])
+    ans = ""
+    for s in S:
+        ascii = ord(s)
+        if ascii < ord('0'): ans += chr(ascii+17)
+        elif ascii < ord('A'): ans += chr(ascii-17)
+        elif ascii <= ord('L'): ans += chr(ascii+13)
+        elif ascii >= ord('N'): ans += chr(ascii-13)
+        else: ans += s
+    return ans
 
 def g_decode(S, n=1):
     # ans = ""
@@ -37,8 +46,15 @@ def g_decode(S, n=1):
     #     if tmp < 60: tmp = (122+1) - (tmp % 60)
     #     ans += chr(tmp)
     # return ans
-    return "".join([chr(ord(s) - 13) for s in S])
+    #return "".join([chr(ord(s) - 13) for s in S])
     #return [encode_map[s.lower()] for s in S].join("")
+    ans = ""
+    for s in S:
+        ascii = ord(s)
+        if ascii <= ord('L'): ans += chr(ascii-13)
+        elif ascii >= ord('N'): ans += chr(ascii+13)
+        else: ans += s
+    return ans
 
 def g_decode_n(S, n=13):
     # ans = ""
@@ -92,9 +108,11 @@ for s in S.split('\n'):
     g_decode_p(s)
 
 def both(s, n=1):
-    print("%s => decode(-13):%s, encode(+13):%s" % (
-        s, g_decode(s, n), g_encode(s))
-    )
+    # print("%s => decode(-13):%s, encode(+13):%s" % (
+    #     s, g_decode(s, n), g_encode(s))
+    # )
+    print("%s =>\n\t%s" % (s, g_encode(s)))
+
 both('3')
 both('P')
 both('0')
@@ -208,15 +226,26 @@ ul = [
     [' ', 'A', ' ', 'U', ' ', 'G', ' ', 'E', ' ', ' ']
 ]
 
-for n in range(13, 14, 1):
-    clue = ul.copy()
-    for i, row in enumerate(clue):
-        for j, s in enumerate(row):
-            if s != ' ':
-                clue[i][j] = g_decode(s)
+print('~'*64)
+for row in ul:
+    print(row)
+print('~'*64)
+# for n in range(13, 14, 1):
+#     clue = ul.copy()
+#     for i, row in enumerate(clue):
+#         for j, s in enumerate(row):
+#             if s != ' ':
+#                 #clue[i][j] = g_decode(s)
+#                 clue[i][j] = g_encode(s)
+clue = ul.copy()
+for i, row in enumerate(clue):
+    for j, s in enumerate(row):
+        clue[i][j] = g_encode(s)
 
-    for row in clue:
-        print(row)
+for row in clue:
+    print(row)
+
+print('~'*64)
 
 
 import math
@@ -240,7 +269,10 @@ def get_intercept(A, B):
     x1, y1 = A
     x2, y2 = B
     #y = ax + b
-    b = y1 - slope*x1
+    if slope == 0 and x1 == x2:
+        b = x1
+    else:
+        b = y1 - slope*x1
     return b
 
 def get_horizon(A, B):
@@ -282,12 +314,22 @@ did not resolve with [[1,0],[1,0],[1,0],[1,0],[1,0],[1,0]], .123
 
 graph = [
     [(-36, 19), (-41, 9), (-37, -3), (-37, 2), (-25, 16)],          # (-34, 19)
-    [(-33, 10), (-29, 11), (-33, 2), (-28, 6), (-29, 9), (-23, 9)],
+    [(-33, 10), (-28, 11), (-33, 2), (-28, 6), (-29, 9), (-23, 9)],
     [(-23, -21), (-20, -15), (-8, -8), (-15, -18)],                 # (-24, -16) no edge, (-26, 15) no even a dot
     [(-4, 19), (-10, 5), (9, 11), (-6, 15), (-1, 6), (4, 12), (0, 20), (13, 9), (-7, -1)],
-    [(27, -4), (24, -15), (24, -8), (24, -12), (24, -17), (18, -20)],
+    [(22, -4), (24, -15), (24, -8), (24, -12), (24, -17), (18, -20)],
     [(28, 10), (31, 4), (39, 9), (33, 10), (24, 8), (29, 15), (34, 6), (35, 8)] # (32, 12) # no edge
 ]
+#https://twitter.com/diegomalone
+graph = [
+    [(-36, 19), (-42, 18), (-41, 9), (-40, 0), (-33,-1), (-37, -3), (-41,-5), (-37, 2), (-44,16), (-27, 18), (-25, 16)],          # (-34, 19)
+    [(-33, 10), (-33, 11),(-31, 12),  (-28, 11),(-19, 8), (-27, -3),  (-33, 2), (-38, 6), (-31, 5), (-28, 6), (-25, 7), (-32, 7), (-29, 9), (-22, 12), (-23, 9)],
+    [(-4, 19), (-9, 18), (-17, 11), (-10, 5), (-3, -1), (11, 4), (9, 11), (7, 18), (-3, 18), (-6, 15), (-9, 12), (-7, 6), (-1, 6), (5, 6), (6, 10), (4, 12), (2, 14), (-5, 18), (0, 20), (5, 22), (14, 16), (13, 9), (12, 2), (-7, -1)],
+    [(28, 10), (29, 7), (31, 4), (33, 1), (40, 5), (39, 9), (38, 13), (33, 10), (25, 5), (24, 8), (23, 11), (26, 16), (29, 15), (32, 14), (32, 6), (34, 6), (36, 6), (36, 8), (35, 8)],
+    [(-23, -21), (-25, -16), (-20, -15), (-15, -14), (0, -15), (-8, 9), (-16, -3), (-15, -18)],
+    [(22, -4), (19, -4), (16, -15), (24, -15), (32, -15), (35, -8), (24, -8), (14, -8), (13, -12), (24, -12), (35, -12), (31, -17), (24, -17), (19, -17), (18, -20)]
+]
+
 
 class Stars:
     def __init__(self, stars, reversed=False):
@@ -303,6 +345,7 @@ class Stars:
 def get_stars_in_remains(A, B, graph, gosa=0.5):
     slope = get_slope(A, B)
     intercept = get_intercept(A, B)
+    #logging.error("slope:%s, intercept:%s" % (slope, intercept))
     stars_in_remains = []
     for row in graph:
         for star in row:
@@ -311,16 +354,28 @@ def get_stars_in_remains(A, B, graph, gosa=0.5):
             # 本当だっtら y == slope * x + intercept としたいんだが
             # それだと通る点がなかったので、丸の大きさがだいたい0.5くらい
             # と思うので誤差内かと言う判定に切り替えた
-            if ans - gosa <= y and y <= ans + gosa:
-                stars_in_remains.append(star)
+
+            #if ans - gosa <= y and y <= ans + gosa:
+            if y == slope * x + intercept:
+
+                x1, y1 = A
+                x2, y2 = B
+                # パスの上にちゃんと乗ってるか？
+                #stars_in_remains.append(star)
+                if min(x1, x2) < x and x < max(x1, x2):
+                    if min(y1, y2) < y and y < max(y1, y2):
+                        stars_in_remains.append(star)
     return list(set(stars_in_remains).difference(set([A, B])))
 
 def depth_in_ocean(stars_in_remains):
+    #return 17
+    #return 34
     depth = 0
     for star in stars_in_remains:
         x, y = star
-        if abs(x) <= 17 and abs(y) <= 17: # in ocean
-            depth += y
+        # if abs(x) <= 17 and abs(y) <= 17: # in ocean
+        #     depth += y
+        depth += dist(star, (0, 0)) # 0, 0 is ocean
     return depth
 
 #
@@ -336,10 +391,12 @@ def traverse(cosmos: List[Stars]):
     logging.debug("traversing %s" % cosmos)
     for stars in cosmos:
         #コスモス６個与えられたときは一つ目とする
-        #points.append(stars.stars[0])
+        if len(cosmos) == 6:
+            points.append(stars.stars[0])
         #コスモス３個与えられたときは最初と最後する
-        points.append(stars.stars[0])
-        points.append(stars.stars[-1])
+        elif len(cosmos) == 3:
+            points.append(stars.stars[0])
+            points.append(stars.stars[-1])
         if pre_stars:
             distance = dist(pre_stars.stars[-1], stars.stars[0])
             logging.debug("dist from %s to %s is %s" % (pre_stars.stars[-1], stars.stars[0], distance))
@@ -353,16 +410,24 @@ def traverse(cosmos: List[Stars]):
                 ttl += journey_horizon
         pre_stars = stars
 
-    logging.debug("longest path is from %s to %s it's dist is %s" % (longest_points[0], longest_points[1], longest))
+
     stars_in_remains = get_stars_in_remains(longest_points[0], longest_points[1], graph)
     if stars_in_remains:
-        logging.error("//%s are %s" % (colored("stars_in_remains", "red"), stars_in_remains))
-        depth = depth_in_ocean(stars_in_remains)
-        logging.error("//sum of depth_in_ocean, from %s to %s is %s" % (longest_points[0], longest_points[1], depth))
+        logging.error("//longest path is from %s to %s it's dist is %s" % (longest_points[0], longest_points[1], longest))
+        logging.error("//%s are %s" % ("stars_in_remains", stars_in_remains))
+        # その点から海が海の深さでいうとどれくらいなのかを表した数字がy軸としての計算
+        # depth = depth_in_ocean(stars_in_remains)
+        #logging.error("//sum of depth_in_ocean, from %s to %s is %s" % (longest_points[0], longest_points[1], depth))
+        # スタート点からremainsの最後の点までの距離
+        depth = dist(longest_points[0], stars_in_remains[-1])
+        logging.error("//%s are reamins through from %s to %s is %s" % (stars_in_remains, longest_points[0], longest_points[1], depth))
         ttl += depth
+        ttl += depth_in_ocean(stars_in_remains)
         logging.error("%s(%s, %s)" % ("sendTransmission", [[x, y] for x, y in points], ttl))
     else:
+        ttl += depth_in_ocean([])
         logging.warn("%s(%s, %s)" % ("sendTransmission", [[x, y] for x, y in points], ttl))
+
     return ttl
 
 
@@ -417,15 +482,117 @@ both("I have seven, and you have six")
 both("I HAVE SEVEN, AND YOU HAVE SIX")
 
 
+print("%s" % ('*'*64))
 indices = [0, 1, 2, 3, 4, 5]
-for i in indices:
-    for j in indices:
-        if j == i: continue
-        for k in indices:
-            if k == i or k ==j: continue
+for a in indices:
+    for b in indices:
+        if b == a: continue
+        for c in indices:
+            if c == a or c ==b: continue
+            for d in indices:
+                if d == a or d ==b or d == c: continue
+                for e in indices:
+                    if e == a or e ==b or e == c or e == d: continue
+                    for f in indices:
+                        if f == a or f ==b or f == c or f == d or f == e: continue
+                        #print(i, j, k)
+                        for l in (True, False):
+                            for m in (True, False):
+                                for n in (True, False):
+                                    for o in (True, False):
+                                        for p in (True, False):
+                                            for q in (True, False):
+                                                traverse(
+                                                    [Stars(graph[a], l),
+                                                     Stars(graph[b], m),
+                                                     Stars(graph[c], n),
+                                                     Stars(graph[d], o),
+                                                     Stars(graph[e], p),
+                                                     Stars(graph[f], q)]
+                                                )
+
+
+print("%s" % ('*'*64))
+
+indices = [0, 1, 2, 3, 4, 5]
+def prem_rec_BOTSU(S, n, i, chosen):
+    print("prem_rec(%s, %s, %s, %s)" % (S, n, i, chosen))
+    if chosen.count(',') == n:
+        ans = list([x for x in chosen.split(',') if x.strip() != ""])
+        print("returning %s" % ans)
+        return ans
+    if i > len(S):
+        return []
+    else:
+        for s in S:
+            S2 = S.copy()
+            S2.remove(s)
+            ans = []
+            ans += prem_rec_BOTSU(S2.copy(), n, i+1, chosen+",%s"%s)
+            ans += prem_rec_BOTSU(S2.copy(), n, i+1, chosen)
+            return ans
+
+def prem_BOTSU(S, n):
+    return prem_rec_BOTSU(S, n, 0, "")
+
+def prem(S, n):
+    for a in S:
+        for b in S:
+            if b == a: continue
+            for c in S:
+                if c == a or c ==b: continue
+                #print([a, b, c])
+                pass
+
+S = [0, 1, 2, 3, 4, 5]
+prem(S, 2)
+
+print("%s" % ('#'*64))
+for a in indices:
+    for b in indices:
+        if b == a: continue
+        for c in indices:
+            if c == a or c ==b: continue
             #print(i, j, k)
             for l in (True, False):
                 for m in (True, False):
                     for n in (True, False):
-                        traverse([Stars(graph[i], l), Stars(graph[j], m), Stars(graph[k], n)])
+                        traverse(
+                            [Stars(graph[a], l),
+                             Stars(graph[b], m),
+                             Stars(graph[c], n)
+                             ]
+                        )
 
+print("%s" % ('#'*64))
+
+both("square")
+both("SQUARE")
+both("circle")
+both("CIRCLE")
+both("enigma")
+both("ENIGMA")
+both("p3")
+both("P3")
+both("p0")
+both("P0")
+both("6")
+both("7")
+both("May 7 at Shoreline Amphitheatr")
+both("I h thi")
+both(":)")
+
+both("00. I hope this transmission finds you well, and all is under control.".upper())
+both("01. It's been too long. Then again, how do you measure the time?".upper())
+both("0:27 02. I'm putting myself to good use here, but often miss the old domain.".upper())
+both("03. Sometimes, upon the darkest night, I'm brought back to that morning light.".upper())
+both("0:43 04. There's no time to be afraid of the sunset. Dawn breaks in a blink(13).".upper())
+both("0:54 05. An enigma hangs between us. The event horizon was seen only by you.".upper())
+both("06. I cannot tell you everything. You of all people should understand why.".upper())
+both("07. Let's speak together in one universal language.".upper())
+both("08. I have seven, and you have six. I hope you understand my tricks?".upper())
+both("09. Now you've found my path. Traverse its distance with both eyes open.".upper())
+both("10. I look forward to our sideways gossip of life's unravelings.".upper())
+both("11. I greatly value all you've done, and proudly call you friend.".upper())
+both("'the answer you seek in the sum oe your journey to the horizon and ".upper())
+both("to the stars you will find in the remains of the longest path and the dexth of the ocean".upper())

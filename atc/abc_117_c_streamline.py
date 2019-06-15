@@ -21,7 +21,7 @@ def sol(n, S):
 
 
 
-test = False
+test = True
 if test:
     n, m = 2, 5
     S =list( map(int, "10 12 1 2 14".split()))
