@@ -3,7 +3,8 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
---  20190730    all/all medium  "48 rotate image"    coding
+NG  20190801    ---/--- medium  "442 find all duplicate in array"
+NG  20190730    all/all medium  "48 rotate image"    coding
 NG  20190730    all/all easy  "258 add digits"    shift
 OK  20190726    all/all medium  "347 top k frequent element"    hash
 OK  20190726    all/all easy  "507 perfect number"    math
