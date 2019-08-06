@@ -40,8 +40,6 @@ class Solution:
         return sum
 
 
-
-
 # 入力Nは徐々というか、十分の一づつ
 # 小さくなって行くのでえ
 # log(10)N
