@@ -5,6 +5,7 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 --  20190804    all/all medium  20190804_mid_5_longest_palindromic_substring
 OK  20190802    all/all easy  20190802_esy_872_leaf_similar_trees   tree
+NG  20190801    ---/--- medium  "442 find all duplicate in array"
 NG  20190730    all/all medium  "48 rotate image"    coding
 NG  20190730    all/all easy  "258 add digits"    shift
 OK  20190726    all/all medium  "347 top k frequent element"    hash
