@@ -67,7 +67,7 @@ def timeit(func):
         return ret
     return wrapped
 
-class Solution:
+class Solution_dp:
     @timeit
     def longestPalindrome(self, S: str) -> str:
         length = len(S)
@@ -88,15 +88,64 @@ class Solution:
         return result
 
 
+"""
+dp使わずに拡大していく方法
+"""
+class Solution:
+    def expand_palindrome(self, S, i):
+        l = i - 1
+        r = i + 1
+        result = S[i]
+        while l >= 0 and r < len(S) and S[l] == S[r]: # check l and r within valid range
+            # this is palindrome
+            if r+1-l > len(result):
+                result = S[l:r+1]
+            l -= 1
+            r += 1
+        return result
+
+    def expand_palindrome_2(self, S, i, j):
+        l = i - 1
+        r = j + 1
+        if i < 0 or j >= len(S): return ""
+        if S[i] != S[j]: return ""
+        result = S[i:j+1]
+        while l >= 0 and r < len(S) and S[l] == S[r]: # check l and r within valid range
+            # this is palindrome
+            if r+1-l > len(result):
+                result = S[l:r+1]
+            l -= 1
+            r += 1
+        return result
+
+    @timeit
+    def longestPalindrome(self, S: str) -> str:
+        if len(S) <= 1: return S
+        result = S[0]
+        # palindrome starting with 1 char
+        for i, c in enumerate(S):
+            tmp = self.expand_palindrome(S, i)
+            if len(tmp) > len(result):
+                result = tmp
+        # palindrome starting with 1 char
+        for i, c in enumerate(S):
+            tmp = self.expand_palindrome_2(S, i, i+1)
+            if len(tmp) > len(result):
+                result = tmp
+        return result
+
 
 
 import logging
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 #logging.basicConfig(level=logging.DEBUG, format="%(message)s")
-s = "babad"
-s = "cbbd"
-# time-exceeded
-#s = "kyyrjtdplseovzwjkykrjwhxquwxsfsorjiumvxjhjmgeueafubtonhlerrgsgohfosqssmizcuqryqomsipovhhodpfyudtusjhonlqabhxfahfcjqxyckycstcqwxvicwkjeuboerkmjshfgiglceycmycadpnvoeaurqatesivajoqdilynbcihnidbizwkuaoegmytopzdmvvoewvhebqzskseeubnretjgnmyjwwgcooytfojeuzcuyhsznbcaiqpwcyusyyywqmmvqzvvceylnuwcbxybhqpvjumzomnabrjgcfaabqmiotlfojnyuolostmtacbwmwlqdfkbfikusuqtupdwdrjwqmuudbcvtpieiwteqbeyfyqejglmxofdjksqmzeugwvuniaxdrunyunnqpbnfbgqemvamaxuhjbyzqmhalrprhnindrkbopwbwsjeqrmyqipnqvjqzpjalqyfvaavyhytetllzupxjwozdfpmjhjlrnitnjgapzrakcqahaqetwllaaiadalmxgvpawqpgecojxfvcgxsbrldktufdrogkogbltcezflyctklpqrjymqzyzmtlssnavzcquytcskcnjzzrytsvawkavzboncxlhqfiofuohehaygxidxsofhmhzygklliovnwqbwwiiyarxtoihvjkdrzqsnmhdtdlpckuayhtfyirnhkrhbrwkdymjrjklonyggqnxhfvtkqxoicakzsxmgczpwhpkzcntkcwhkdkxvfnjbvjjoumczjyvdgkfukfuldolqnauvoyhoheoqvpwoisniv"
-s = "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-ans = Solution().longestPalindrome(s)
-logging.info(ans)
+inputs = [
+    "babad",
+    "cbbd",
+    # time-exceeded
+    "kyyrjtdplseovzwjkykrjwhxquwxsfsorjiumvxjhjmgeueafubtonhlerrgsgohfosqssmizcuqryqomsipovhhodpfyudtusjhonlqabhxfahfcjqxyckycstcqwxvicwkjeuboerkmjshfgiglceycmycadpnvoeaurqatesivajoqdilynbcihnidbizwkuaoegmytopzdmvvoewvhebqzskseeubnretjgnmyjwwgcooytfojeuzcuyhsznbcaiqpwcyusyyywqmmvqzvvceylnuwcbxybhqpvjumzomnabrjgcfaabqmiotlfojnyuolostmtacbwmwlqdfkbfikusuqtupdwdrjwqmuudbcvtpieiwteqbeyfyqejglmxofdjksqmzeugwvuniaxdrunyunnqpbnfbgqemvamaxuhjbyzqmhalrprhnindrkbopwbwsjeqrmyqipnqvjqzpjalqyfvaavyhytetllzupxjwozdfpmjhjlrnitnjgapzrakcqahaqetwllaaiadalmxgvpawqpgecojxfvcgxsbrldktufdrogkogbltcezflyctklpqrjymqzyzmtlssnavzcquytcskcnjzzrytsvawkavzboncxlhqfiofuohehaygxidxsofhmhzygklliovnwqbwwiiyarxtoihvjkdrzqsnmhdtdlpckuayhtfyirnhkrhbrwkdymjrjklonyggqnxhfvtkqxoicakzsxmgczpwhpkzcntkcwhkdkxvfnjbvjjoumczjyvdgkfukfuldolqnauvoyhoheoqvpwoisniv",
+    #"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+]
+for s in inputs:
+    ans = Solution().longestPalindrome(s)
+    logging.info(ans)
