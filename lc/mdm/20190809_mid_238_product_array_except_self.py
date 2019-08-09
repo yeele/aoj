@@ -12,160 +12,144 @@ def timeit(func):
         return ret
     return wrapped
 
+from functools import reduce
+class Solution_division:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ret = []
+        product = reduce(lambda x, y : x * y, nums)
+        for i, n in enumerate(nums):
+            ret.append(product/n)
+        return ret
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
 
-    def set(self, node):
-        self.next = node
+from functools import reduce
+class Solution_timeexceeded:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ret = []
+        cache_forward = []
+        cache_backward = []
+        for i, n in enumerate(nums):
+            if i == 0:
+                cache_forward.append(1)
+            else:
+                cache_forward.append(reduce(lambda x, y : x * y, nums[0:i]))
+
+        for i, n in enumerate(nums):
+            if i == len(nums)-1:
+                cache_backward.append(1)
+            else:
+                cache_backward.append(reduce(lambda x, y : x * y, nums[i+1:]))
+
+        logging.debug("cache_forward:%s" % cache_forward)
+        logging.debug("cache_backward:%s" % cache_backward)
+
+        return list(map(lambda t: t[0]*t[1], list(zip(cache_forward, cache_backward))))
+
+
+
+from functools import reduce
+class Solution_timeexceeded_again_offcourse_nothing_changed:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ret = []
+        length = len(nums)
+        for i in range(length):
+            forward = 1
+            backward = 1
+            if i == 0:
+                forward = 1
+            else:
+                forward = reduce(lambda x, y : x * y, nums[0:i])
+            if i == length-1:
+                backward = 1
+            else:
+                backward = reduce(lambda x, y : x * y, nums[i+1:])
+            ret.append(forward*backward)
+        return ret
+
 
 
 class Solution:
-    def toNum(self, node: ListNode):
-        curr = node
-        stack = []
-        while curr:
-            x = curr.val
-            stack.append(x)
-            curr = curr.next
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        ret = []
+        length = len(nums)
+        product_forward = []
+        product_backward = []
+        product = 1
 
-        i = 0
-        num = 0
-        while len(stack) > 0:
-            x = stack.pop(0)
-            num += (x * (10**i))
-            i += 1
-        return num
-
-    """
-    has overflow problem...
-    9223372036854775807
-    1000000000000000000000000000001
-    """
-    def toLinkedList_deprecated(self, num):
-        n = num
-        curr = None
-        root = None
-        if n == 0: return ListNode(0)
-        while n > 0:
-            print("n:%s" % n)
-            x = n % 10
-            if curr:
-                curr.next = ListNode(x)
-                curr = curr.next
+        for i in range(length):
+            if i == 0:
+                product *= 1
+                product_forward.append(product)
             else:
-                curr = ListNode(x)
-                root = curr
-            n = int(n / 10)
-        return root
+                product *= nums[i-1]
+                product_forward.append(product)
 
-    def toLinkedList(self, num):
-        n = str(num)
-        curr = None
-        root = None
-        if n == '0': return ListNode(0)
-        while len(n) > 0:
-            x = int(n[-1])
-            if curr:
-                curr.next = ListNode(x)
-                curr = curr.next
+        product = 1
+        for i in range(length-1, -1, -1):
+            if i == length-1:
+                product *= 1
+                product_backward.insert(0, product)
             else:
-                curr = ListNode(x)
-                root = curr
-            n = n[:-1]
-        return root
+                product *= nums[i+1]
+                product_backward.insert(0, product)
 
-    #@timeit
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        a = self.toNum(l1)
-        b = self.toNum(l2)
-        logging.debug("a:%s, b:%s" % (a, b))
-        if a > 0 and b == 0:
-            return l1
-        elif b > 0 and a == 0:
-            return l2
-        else:
-            return self.toLinkedList(a+b)
+        # print(product_forward)
+        # print(product_backward)
+        return list(map(lambda t: t[0]*t[1], zip(product_forward, product_backward)))
 
 
 
 import logging
-#logging.basicConfig(level=logging.INFO, format="%(message)s")
-logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+#logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 """
-Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
-Output: 7 -> 0 -> 8
-Explanation: 342 + 465 = 807.
+1002am 
+Input:  [1,2,3,4]
+Output: [24,12,8,6]
+
+[2, 7, 1]
+[7, 2, 14]
+
+1017am watch answer video cuz, I didn't come with the solution.
+
+so, 
+
+make precomputation by
+calculating product upto i element in forward direction and backward direction
+
+in the case of [1, 2, 3, 4]
+
+cache_forward = [
+1,
+1,
+2,
+6
+]
+cache_backward = [
+24,
+12,
+4,
+1
+
+]
+
+1020am coding start
+1030am coding done
+
+but time exceeded
+
+
+1053am accepted
+
+
+
 """
 
-def printLinkedList(node: ListNode):
-    stack = []
-    while node:
-        stack.append(str(node.val))
-        node = node.next
-    return "->".join(stack)
+samples = [
+    [1, 2, 3, 4],
+    [2, 7, 1]
+]
 
-a = ListNode(2)
-a.next = ListNode(4)
-a.next.next = ListNode(3)
-b = ListNode(5)
-b.next = ListNode(6)
-b.next.next = ListNode(4)
-
-# a = ListNode(0)
-# b = ListNode(0)
-
-# a = ListNode(1)
-# a.next = ListNode(8)
-# b = ListNode(0)
-
-
-# a = ListNode(9)
-# a.next = ListNode(8)
-# b = ListNode(1)
-
-
-a = ListNode(1)
-a.next = ListNode(0)
-a.next.next = ListNode(0)
-a.next.next.next = ListNode(0)
-a.next.next.next.next = ListNode(0)
-a.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(0)
-a.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next.next = ListNode(1)
-b = ListNode(5)
-b.next = ListNode(6)
-b.next.next = ListNode(4)
-
-logging.debug("a: %s" % printLinkedList(a))
-logging.debug("b: %s" % printLinkedList(b))
-ans = Solution().addTwoNumbers(a, b)
-logging.info("ans: %s" % printLinkedList(ans))
-import sys
-print(sys.maxsize)
+for nums in samples:
+    ans = Solution().productExceptSelf(nums)
+    print(ans)
