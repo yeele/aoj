@@ -3,7 +3,9 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
---  20190809    --/all  medium  20190809_mid_82_remove_duplicate_from_sorted_array
+--  20190810    all/all medium  20190810_mdm_82_remove_duplicate_from_sorted_array_2
+--  20190810    all/all medium  20190810_mdm_80_remove_duplicate_from_sorted_array
+OK  20190810    all/all easy    20190810_esy_26_remove_duplicate_from_sorted_array
 NG  20190809    --/all  easy    20190809_esy_1013_partition_array_into_three_parts_with_equal_sum
 NG  20190809    all/all medium  20190809_mid_238_product_array_except_self
 --  20190808    --/all  easy    20190808_esy_108_convert_sorted_array_to_binary_search_tree
