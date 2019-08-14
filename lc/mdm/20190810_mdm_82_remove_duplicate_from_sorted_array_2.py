@@ -1,44 +1,61 @@
-#-*- coding: utf-8 -*-
-from typing import List
-import math
+#Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
-import time
-def timeit(func):
-    def wrapped(*args, **kwargs):
-        start = time.time()
-        ret = func(*args, **kwargs)
-        elapsed = time.time() - start
-        print("elapsed: %s" % elapsed)
-        return ret
-    return wrapped
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        j = 0 # write pointer
-        if nums == None or len(nums) == 0: return 0
-        pre = None
-        dup = 0
-        for i in range(len(nums)):
-            if nums[i] == pre: # duplicate
-                dup += 1
-                nums[j] = nums[i]
-                if dup < 2:
-                    j+=1
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        dummy = ListNode("dummy")
+        dummy.next = head
+        curr = head
+        prev = dummy
+        prepre = None
+        while curr:
+            if curr.val == prev.val:
+                # skip til to new value
+                temp = curr
+                curr = curr.next
+                while curr:
+                    if curr.val != temp.val:
+                        break
+                    curr = curr.next
+                prev = prepre
+                prepre.next = curr
+
             else:
-                dup = 0
-                nums[j] = nums[i]
-                j+=1
-            pre = nums[i]
-        return j
+                prepre = prev
+                prev = curr
+                curr = curr.next
+        return dummy.next
 
-samples = [
-    #[1,1,1,2,2,3],
-    [0,0,1,1,1,1,2,3,3],
-]
+def nodeToString(node: ListNode):
+    stack = []
+    while node:
+        stack.append(node.val)
+        node = node.next
+    return "->".join([str(x) for x in stack])
+
+root = ListNode(1)
+root.next = ListNode(2)
+root.next.next = ListNode(3)
+root.next.next.next = ListNode(3)
+root.next.next.next.next = ListNode(4)
+root.next.next.next.next.next = ListNode(4)
+root.next.next.next.next.next.next = ListNode(5)
 
 
-for sample in samples:
-    ans = Solution().removeDuplicates(sample)
-    print("ans:%s" % ans)
-    print("new array: %s" % sample[:ans])
+print(nodeToString(root))
+ans = Solution().deleteDuplicates(root)
+print(nodeToString(ans))
 
 
+root = ListNode(1)
+root.next = ListNode(1)
+root.next.next = ListNode(1)
+root.next.next.next = ListNode(2)
+root.next.next.next.next = ListNode(3)
+
+print(nodeToString(root))
+ans = Solution().deleteDuplicates(root)
+print(nodeToString(ans))
