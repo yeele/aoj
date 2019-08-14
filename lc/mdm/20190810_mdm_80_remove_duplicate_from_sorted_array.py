@@ -11,32 +11,28 @@ def timeit(func):
         print("elapsed: %s" % elapsed)
         return ret
     return wrapped
-
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        j = 1 # write pointer
+        j = 0 # write pointer
         if nums == None or len(nums) == 0: return 0
-        pre = nums[0]
+        pre = None
         dup = 0
-        dup_pre = None
-        for i, x in enumerate(nums):
-            if i == 0:
-                pass
-            elif x == pre: # duplicate
-                if x != dup_pre:
-                    dup += 1
-                dup_pre = x
+        for i in range(len(nums)):
+            if nums[i] == pre: # duplicate
+                dup += 1
+                nums[j] = nums[i]
+                if dup < 2:
+                    j+=1
             else:
-                nums[j] = x
+                dup = 0
+                nums[j] = nums[i]
                 j+=1
-            pre = x
+            pre = nums[i]
         return j
 
 samples = [
-    [1, 1, 2],
-    [0,0,1,1,1,2,2,3,3,4],
-    [0, 0, 0, 0],
-    [0, 1, 2, 3, 4],
+    #[1,1,1,2,2,3],
+    [0,0,1,1,1,1,2,3,3],
 ]
 
 

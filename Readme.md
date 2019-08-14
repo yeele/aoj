@@ -3,8 +3,10 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
---  20190810    all/all medium  20190810_mdm_82_remove_duplicate_from_sorted_array_2
---  20190810    all/all medium  20190810_mdm_80_remove_duplicate_from_sorted_array
+--  20190813    all/all medium  20190813_mdm_22_generate_parenthesis
+OK  20190813    all/all medium  20190813_mdm_253_meeting_room_ii
+OK  20190810    all/all medium  20190810_mdm_82_remove_duplicate_from_sorted_array_2
+OK  20190810    all/all medium  20190810_mdm_80_remove_duplicate_from_sorted_array
 OK  20190810    all/all easy    20190810_esy_26_remove_duplicate_from_sorted_array
 NG  20190809    --/all  easy    20190809_esy_1013_partition_array_into_three_parts_with_equal_sum
 NG  20190809    all/all medium  20190809_mid_238_product_array_except_self
