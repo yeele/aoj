@@ -39,5 +39,4 @@ root.left = None
 root.right = TreeNode(2)
 
 Solution().printAll(root)
-
 print("maxDepth:%s" % Solution().maxDepth(root))

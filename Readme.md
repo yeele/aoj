@@ -1,8 +1,13 @@
 *LC
 
+75problems => https://www.teamblind.com/article/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+
+#### 75 problems (start)
+OK  20190815    all/all  hard    20190815_hrd_124_binary_tree_maximum_path_sum
+#### techseries covered by video problems (end)
 --  20190813    all/all medium  20190813_mdm_22_generate_parenthesis
 OK  20190813    all/all medium  20190813_mdm_253_meeting_room_ii
 OK  20190810    all/all medium  20190810_mdm_82_remove_duplicate_from_sorted_array_2
@@ -27,4 +32,4 @@ OK  20190705    all/all easy    "100 same tree"                 recursive
 OK  20190703    all/all easy    "104 max depth of tree" https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/
 OK  20190625    0/276  medium  "3sum"
 OK  20190624    23/276  medium  "1073. Adding Two Negabinary Numbers"
-
+#### techseries covered by video problems (start)
