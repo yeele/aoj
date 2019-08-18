@@ -15,8 +15,9 @@ class TreeNode:
     def __init__(self):
         self.val = 0
         self.vertex = []
-
+trees = []
 def make_trees(n, A, B):
+    global trees
     trees = []
     for i in range(n):
         trees.append(TreeNode())
@@ -26,21 +27,21 @@ def make_trees(n, A, B):
         trees[a].vertex.append(b)
     return trees
 
-def dfs(node: TreeNode, x: int, trees):
+def dfs(node: TreeNode, x: int):
     if node:
         node.val += x
         for i in node.vertex:
-            dfs(trees[i], x, trees)
+            dfs(trees[i], x)
 
 
 def sol(n, q, A, B, P, X):
-    trees = make_trees(n, A, B)
+    make_trees(n, A, B)
     for i in range(len(P)):
         p = P[i]-1
         x = X[i]
         t = trees[p]
         # dfs, give point x
-        dfs(t, x, trees)
+        dfs(t, x)
     #
     return " ".join([str(t.val)  for t in trees])
     #return n, q, A, B, P, X
@@ -48,7 +49,7 @@ def sol(n, q, A, B, P, X):
 
 
 do_submit = True
-do_submit = False
+#do_submit = False
 
 def input_parse(input_str):
     lines = [x.strip() for x in input_str.split("\n") if x.strip()]
