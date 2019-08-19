@@ -9,7 +9,9 @@ from collections import defaultdict
 import sys
 import math
 from datetime import datetime
-
+"""
+うまくabc138d.pyで解けなかったので、やり直しですね。
+"""
 
 class TreeNode:
     def __init__(self):
@@ -33,7 +35,6 @@ def dfs(node: TreeNode, carry: int, trees):
         for i in node.vertex:
             dfs(trees[i], node.val, trees)
 
-
 def sol(n, q, A, B, P, X):
     trees = make_trees(n, A, B)
     for i in range(len(P)):
@@ -51,7 +52,7 @@ def sol(n, q, A, B, P, X):
 
 
 do_submit = True
-do_submit = False
+#do_submit = False
 
 def input_parse(input_str):
     lines = [x.strip() for x in input_str.split("\n") if x.strip()]
@@ -123,24 +124,23 @@ if not do_submit:
     print(sol(n, q, A, B, P, X))
 
 else:
-    # n = int(input().strip())
-    # q = int(input().strip())
     n, q = list(map(int, input().split()))
-    A = []
-    B = []
-    P = []
-    X = []
+    trees =  [ [] for i in range(n) ]
+    values = [ 0 for i in range(n) ]
     for i in range(n-1):
         a, b = list(map(int, input().split()))
-        # a = int(input().strip())
-        # b = int(input().strip())
-        A.append(a)
-        B.append(b)
+        trees[a-1].append(b-1)
     for i in range(q):
         p, x = list(map(int, input().split()))
-        # p = int(input().strip())
-        # x = int(input().strip())
-        P.append(p)
-        X.append(x)
-    print(sol(n, q, A, B, P, X))
+        # dfs, give point x
+        values[p-1] = values[p-1] + x
+    # accmulative run
+    def dfs2(i):
+        for j in trees[i]:
+            values[j] += values[i]
+            dfs2(j)
+    dfs2(0)
+    #
+    for x in values:
+        print(x, end=" ")
 
