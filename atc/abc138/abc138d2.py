@@ -44,7 +44,7 @@ do_submit = True
 #     """)
 #     print(sol(n, q, A, B, P, X))
 import sys
-#input = sys.stdin.readline
+input = sys.stdin.readline
 sys.setrecursionlimit(1000000)
 n, q = map(int, input().split())
 
