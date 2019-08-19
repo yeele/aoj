@@ -43,19 +43,21 @@ do_submit = True
 #         4 11
 #     """)
 #     print(sol(n, q, A, B, P, X))
+import sys
+#input = sys.stdin.readline
+sys.setrecursionlimit(1000000)
+n, q = map(int, input().split())
 
-
-n, q = list(map(int, input().split()))
-trees =  [ [] for i in range(n) ]
+trees = [ [] for i in range(n+1) ]
 for i in range(n-1):
-    a, b = list(map(int, input().split()))
-    trees[a-1].append(b-1)
-    trees[b-1].append(a-1)
+    a, b = map(int, input().split())
+    trees[a].append(b)
+    trees[b].append(a)
 
-values = [ 0 for i in range(n) ]
+values = [ 0 for i in range(n+1) ]
 for i in range(q):
-    p, x = list(map(int, input().split()))
-    values[p-1] += x
+    p, x = map(int, input().split())
+    values[p] += x
 #print(values)
 
 def dfs2(i, parent):
@@ -64,6 +66,6 @@ def dfs2(i, parent):
         values[j] += values[i]
         dfs2(j, i)
 
-dfs2(0, -1)
-print(*values)
+dfs2(1, -1)
+print(*values[1:])
 
