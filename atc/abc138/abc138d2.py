@@ -48,24 +48,21 @@ input = sys.stdin.readline
 sys.setrecursionlimit(1000000)
 n, q = map(int, input().split())
 
-trees = [ [] for i in range(n+1) ]
+trees = [ [] for i in range(n) ]
 for i in range(n-1):
     a, b = map(int, input().split())
-    trees[a].append(b)
-    trees[b].append(a)
+    trees[a-1].append(b-1)
 
-values = [ 0 for i in range(n+1) ]
+values = [ 0 for i in range(n) ]
 for i in range(q):
     p, x = map(int, input().split())
-    values[p] += x
-#print(values)
+    values[p-1] += x
 
-def dfs2(i, parent):
+def dfs(i):
     for j in trees[i]:
-        if j == parent: continue
         values[j] += values[i]
-        dfs2(j, i)
+        dfs(j)
 
-dfs2(1, -1)
-print(*values[1:])
+dfs(0)
+print(*values)
 
