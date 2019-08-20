@@ -52,17 +52,18 @@ trees = [ [] for i in range(n) ]
 for i in range(n-1):
     a, b = map(int, input().split())
     trees[a-1].append(b-1)
+    trees[b-1].append(a-1)
 
 values = [ 0 for i in range(n) ]
 for i in range(q):
     p, x = map(int, input().split())
     values[p-1] += x
 
-def dfs(i):
+def dfs(i, parent):
     for j in trees[i]:
+        if j == parent: continue
         values[j] += values[i]
-        dfs(j)
+        dfs(j, i)
 
-dfs(0)
+dfs(0, -1)
 print(*values)
-
