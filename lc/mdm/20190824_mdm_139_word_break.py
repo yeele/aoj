@@ -20,7 +20,6 @@ class Solution:
                     sz = j+1-i
                     if j - sz >= 0:
                         L[i][j] = L[i][j- sz]
-                        #L[i][j] = 1
                     else:
                         L[i][j] = 1
                 else:
@@ -28,6 +27,7 @@ class Solution:
                         L[i][j] = L[i-1][j]
                 for row in L:
                     logging.debug(row)
+                if j == len(S)-1 and L[i][j] == 1: return True
         for row in L:
             logging.debug(row)
         return True if L[i][j] == 1 else False
