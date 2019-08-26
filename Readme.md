@@ -6,6 +6,7 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+NG  20190824    all/all  medium 20190824_mdm_139_word_break    dp
 NG  20190823    all/all  medium 20190822_mdm_1143_longest_common_subsequence    dp
 OK  20190822    all/all  medium 20190822_mdm_300_longest_increasing_subsequence
 OK  20190820    all/all  medium 20190820_mdm_11_container_with_most_water
