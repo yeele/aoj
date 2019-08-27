@@ -3,6 +3,7 @@ from typing import List
 import sys
 
 import logging
+#logging.basicConfig(level=logging.WARN, format="%(message)s")
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 #logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 import itertools
@@ -26,26 +27,39 @@ class Solution:
         self.ans = []
         self.dp = defaultdict(list)
         self.cache = True
+        self.hit = 0
+        self.calls = 0
     @timeit
     def combinationSum2(self, nums: List[int], target: int) -> int:
+        self.hit = 0
+        self.calls = 0
         self.ans = []
         nums.sort()
         self.rec(nums, target, 0, "")
         # how to remove duplicate from list of list since set doesn't work
         # https://stackoverflow.com/questions/2213923/removing-duplicates-from-a-list-of-lists
         self.ans.sort()
+        logging.info("cache hit:%s / calls:%s" % (self.hit, self.calls))
+        #logging.info("dp:%s"%self.dp)
         return list(k for k,_ in itertools.groupby(self.ans))
 
     def csv_to_list(self, text):
         return [int(x.strip()) for x in text.split(",") if x.strip() is not ""]
 
+    def cachey(self, S, target, i):
+        key = ",".join([str(x) for x in S[i:]]) + ":" + str(target)
+        return key
+
     def rec(self, S: List[int], target: int, i, sofar: str):
-        logging.debug("rec(%s, %s, %s, %s)" % (S, target, i, sofar))
-        if "%s,%s"%(target,i) in self.dp["%s,%s"%(target,i)] and self.cache:
-            return self.dp["%s,%s"%(target,i)]
+        self.calls += 1
+        #logging.debug("rec(%s, %s, %s, %s)" % (S, target, i, sofar))
+        if self.cachey(S, target,i) in self.dp[self.cachey(S, target,i)] and self.cache:
+            self.hit += 1
+            return self.dp[self.cachey(S,target,i)]
         length = len(S)
         if target == 0:
             self.ans.append(self.csv_to_list(sofar))
+            self.dp[self.cachey(S,target, i)] = self.ans[:]
             return
         elif target < 0:
             return
@@ -53,9 +67,9 @@ class Solution:
             if i >= length: return
             x = S[i]
             self.rec(S, target-x, i+1, sofar + "%s,"%x )
-            self.dp["%s,%s"%(target-x, i+1)] = self.ans[:]
-            self.rec(S, target, i+1, sofar )
-            self.dp["%s,%s"%(target, i+1)] = self.ans[:]
+            self.dp[self.cachey(S, target-x, i+1)] = self.ans[:]
+            self.rec(S, target, i+1, sofar)
+            self.dp[self.cachey(S, target, i+1)] = self.ans[:]
 
 
 
