@@ -6,13 +6,14 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+OK  20190829    all/all  easy   20190829_esy_198_house_robber
 --  20190826    ---/all  medium 20190826_mdm_39_combination_sum
 --  20190826    ---/all  medium 20190826_mdm_377_combination_sum_iv
 NG  20190824    all/all  medium 20190824_mdm_139_word_break    dp
 NG  20190823    all/all  medium 20190822_mdm_1143_longest_common_subsequence    dp
 OK  20190822    all/all  medium 20190822_mdm_300_longest_increasing_subsequence
 OK  20190820    all/all  medium 20190820_mdm_11_container_with_most_water
-OK  20190818    all/all  easy    20190818_esy_70_climbing_stairs
+OK  20190818    all/all  easy   20190818_esy_70_climbing_stairs
 OK  20190815    all/all  hard   20190815_hrd_124_binary_tree_maximum_path_sum
 #### techseries covered by video problems (end)
 --  20190813    all/all medium  20190813_mdm_22_generate_parenthesis
