@@ -21,9 +21,9 @@ import itertools
 from collections import defaultdict
 import time
 
-#logging.basicConfig(level=logging.WARN, format="%(message)s")
+logging.basicConfig(level=logging.WARN, format="%(message)s")
 #logging.basicConfig(level=logging.INFO, format="%(message)s")
-logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+#logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 class Solution:
     """
     1.  O(2^(n/2)) => O(2^n) = １文字とるパターンと２文字とるパターンでの再帰
@@ -37,9 +37,8 @@ class Solution:
         dp = [0] * length
         dp[0] = 1
         if len(s) == 1 and s == "0": return 0
+        if len(s) > 0 and s[0] == "0": return 0
         if len(s) == 1: return 1
-        if len(s) == 2: return 2
-        dp[1] = 2
 
         # assuming that all the input are sanitized
         def dp_print():
@@ -49,11 +48,18 @@ class Solution:
             if i < 0 or i >= length: return default
             return dp[i]
 
-        for i in range(2, length):
-            if int(s[i-1] + s[i]) <= 26:
-                dp[i] = dp_get(i-2) + dp_get(i-1)
+        for i in range(1, length):
+            if s[i-1] == "0" and s[i] == "0": return 0
+            x = int(s[i-1] + s[i])
+            if 10 <= x and x <= 26:
+                if s[i] == "0":
+                    dp[i] = dp_get(i-2, default=1)
+                else:
+                    dp[i] = dp_get(i-2, default=1) + dp_get(i-1, default=1)
+            elif x % 10 == 0:
+                return 0
             else:
-                dp[i] = dp_get(i-1)
+                dp[i] = dp_get(i-1, default=1)
         dp_print()
         return dp[i]
 
@@ -65,12 +71,13 @@ samples = [
     ("226", 3),
     ("2262", 3),
     ("2212", 5),
-    ("0", 0)
+    ("0", 0),
+    ("10", 1),
 ]
 for S, expected in samples:
     print("-"*20)
     ans = Solution().numDecodings(S)
-    #assert ans == expected, "(%s, %s) => %s but %s was expected" % (nums, k, ans, expected)
+    assert ans == expected, "(%s) => %s but %s was expected" % (S, ans, expected)
     print("(%s) = %s as expected!" % (S, ans))
 
 
