@@ -24,12 +24,7 @@ import time
 #logging.basicConfig(level=logging.INFO, format="%(message)s")
 logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
-"""
-方向性は悪くないはずだが
-うまく、考えれなくなってきたので、一回このファイルではなくて
-新しいファイルで実装しなおすわ。
-なのでこのファイルはこのまま保存しておく
-"""
+
 class Solution:
     def pacificAtlantic(self, S: List[List[int]]) -> List[List[int]]:
         m = len(S)
@@ -50,66 +45,42 @@ class Solution:
         def print_matrix(matrix:List[List[int]]):
             for row in matrix:
                 logging.debug(row)
+        def myself(i, j):
+            if not idx_valid(i, j): return -1
+            if (i == 0 or j == 0) and ((i == (m-1)) or (j == (n-1))): return 3
+            if ((i == (m-1)) or (j == (n-1))): return 2
+            if (i == 0 or j == 0): return 1
+            return 0
 
         def dfs(i, j):
             logging.debug("dfs(%s, %s)" % (i, j))
-            if (i == 0 or j == 0) and (i == (m-1) or j == (n-1)):
-                dp[i][j] = 3
-                done[i][j] = 1
-                return dp[i][j]
-            if i == (m-1) or j == (n-1):
-                dp[i][j] = max(2, dp[i][j])
-                done[i][j] = 1
-                return dp[i][j]
-            if i == 0 or j == 0:
-                dp[i][j] = max(1, dp[i][j])
-                done[i][j] = 1
-                return dp[i][j]
-
-            if done[i][j] == 1: return dp[i][j]
-
-
-            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j]: dfs(i, j-1)
-            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j]: dfs(i, j+1)
-            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j]: dfs(i+1, j)
-            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j]: dfs(i-1, j)
-            #　でも実はまだ上下左右のdpは計算中の可能性がある
-            complete = [0, 0, 0, 0]
-            def completeness_check(i, j, delta_i, delta_j):
-                if idx_valid(i+(delta_i), j+(delta_j)) and S[i+(delta_i)][j+(delta_j)] <= S[i][j]:
-                    return done[i+(delta_i)][j+(delta_j)]
-                else:
-                    return 1
-
-            complete[0] = completeness_check(i, j,  0, -1)
-            complete[1] = completeness_check(i, j,  0,  1)
-            complete[2] = completeness_check(i, j,  1,  0)
-            complete[3] = completeness_check(i, j, -1,  0)
-
-            done[i][j] = 1 if sum(complete)==4 else 0
+            if done[i][j] == 2: return dp[i][j] #調査済みならその結果を教えてやろう。
+            # 自分以下でかつ未踏の地であればdfs
+            done[i][j] = 1
+            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1)
+            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1)
+            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j)
+            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j)
 
             l = dp_get(i, j-1)
             r = dp_get(i, j+1)
-            u = dp_get(i+1, j)
-            b = dp_get(i-1, j)
-            if max(l, r, u, b) == 3:
+            u = dp_get(i-1, j)
+            b = dp_get(i+1, j)
+            me = myself(i, j)
+            if 1 in [l, r, u, b, me] and 2 in [l, r, u, b, me]:
                 dp[i][j] = 3
-                done[i][j] = 1
-            if 1 in [l, r, u, b] and 2 in [l, r, u, b]:
-                dp[i][j] = 3
-                done[i][j] = 1
             else:
-                dp[i][j] = max(0, l, r, u, b)
+                dp[i][j] = max(0, l, r, u, b, me)
 
+            done[i][j] = 2
             return dp[i][j]
 
         ans = []
         for i in range(m):
             for j in range(n):
-                if dp[i][j] == -1:
-                    local = dfs(i, j)
-                    if local >= 2:
-                        ans.append([i, j])
+                local = dfs(i, j)
+                if local >= 3:
+                    ans.append([i, j])
         logging.debug("---- dp ----")
         print_matrix(dp)
         logging.debug("---- S ----")
