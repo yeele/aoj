@@ -42,6 +42,9 @@ class Solution:
         def dp_get(i, j, default=-1):
             if idx_valid(i, j): return dp[i][j]
             return default
+        def matrix_get(matrix, i, j, default=-1):
+            if idx_valid(i, j): return matrix[i][j]
+            return default
         def print_matrix(matrix:List[List[int]]):
             for row in matrix:
                 logging.debug(row)
@@ -57,10 +60,11 @@ class Solution:
             if done[i][j] == 2: return dp[i][j] #調査済みならその結果を教えてやろう。
             # 自分以下でかつ未踏の地であればdfs
             done[i][j] = 1
-            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1)
-            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1)
-            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j)
-            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j)
+
+            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1);
+            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1);
+            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j);
+            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j);
 
             l = dp_get(i, j-1)
             r = dp_get(i, j+1)
@@ -90,7 +94,6 @@ class Solution:
         return ans
 
 
-
 samples = [
     (
         [
@@ -101,6 +104,10 @@ samples = [
             [5, 1, 1, 2, 4],
         ],
         [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
+    ),
+    (
+        [[1,1],[1,1],[1,1]],
+        [[0,0],[0,1],[1,0],[1,1],[2,0],[2,1]]
     )
 ]
 
