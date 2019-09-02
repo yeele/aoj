@@ -55,26 +55,27 @@ class Solution:
             if (i == 0 or j == 0): return 1
             return 0
 
-        def dfs(i, j):
+        def dfs(i, j, parent=-1):
             logging.debug("dfs(%s, %s)" % (i, j))
             if done[i][j] == 2: return dp[i][j] #調査済みならその結果を教えてやろう。
             # 自分以下でかつ未踏の地であればdfs
             done[i][j] = 1
 
-            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1);
-            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1);
-            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j);
-            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j);
+            me = myself(i, j)
+            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1, me);
+            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1, me);
+            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j, me);
+            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j, me);
 
             l = dp_get(i, j-1)
             r = dp_get(i, j+1)
             u = dp_get(i-1, j)
             b = dp_get(i+1, j)
-            me = myself(i, j)
-            if 1 in [l, r, u, b, me] and 2 in [l, r, u, b, me]:
+
+            if 1 in [l, r, u, b, me, parent] and 2 in [l, r, u, b, me, parent]:
                 dp[i][j] = 3
             else:
-                dp[i][j] = max(0, l, r, u, b, me)
+                dp[i][j] = max(0, l, r, u, b, me, parent)
 
             done[i][j] = 2
             return dp[i][j]
@@ -95,19 +96,23 @@ class Solution:
 
 
 samples = [
+    # (
+    #     [
+    #         [1, 2, 2, 3, 5],
+    #         [3, 2, 3, 4, 4],
+    #         [2, 4, 5, 3, 1],
+    #         [6, 7, 1, 4, 5],
+    #         [5, 1, 1, 2, 4],
+    #     ],
+    #     [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
+    # ),
+    # (
+    #     [[1,1],[1,1],[1,1]],
+    #     [[0,0],[0,1],[1,0],[1,1],[2,0],[2,1]]
+    # ),
     (
-        [
-            [1, 2, 2, 3, 5],
-            [3, 2, 3, 4, 4],
-            [2, 4, 5, 3, 1],
-            [6, 7, 1, 4, 5],
-            [5, 1, 1, 2, 4],
-        ],
-        [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]]
-    ),
-    (
-        [[1,1],[1,1],[1,1]],
-        [[0,0],[0,1],[1,0],[1,1],[2,0],[2,1]]
+        [[3,3,3,3,3,3],[3,0,3,3,0,3],[3,3,3,3,3,3]],
+        [[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[1,0],[1,2],[1,3],[1,5],[2,0],[2,1],[2,2],[2,3],[2,4],[2,5]]
     )
 ]
 
