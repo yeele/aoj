@@ -32,6 +32,7 @@ class Solution:
         n = len(S[0])
 
         dp = [ [-1] * n for _ in range(m) ]
+        done = [ [False] * n for _ in range(m) ]
         # -1, not visitted
         #  0 = none, 1 = ~, 2 = *, 3 = ~ and *
         def idx_valid(i, j):
@@ -47,25 +48,33 @@ class Solution:
 
         def dfs(i, j):
             logging.debug("dfs(%s, %s)" % (i, j))
-            if dp[i][j] >= 0: return dp[i][j]
+            #if dp[i][j] >= 0: return dp[i][j]
             if i == 0 or j == 0: dp[i][j] = 1
             if i == (m-1) or j == (n-1): dp[i][j] = 2
-            if (i == 0 or j == 0) and i == (m-1) or j == (n-1): dp[i][j] = 3
+            if (i == 0 or j == 0) and (i == (m-1) or j == (n-1)): dp[i][j] = 3
             if dp[i][j] > 0:
+                done[i][j] = True
                 return dp[i][j]
+
             if idx_valid(i, j-1) and S[i][j-1] <= S[i][j]: dfs(i, j-1)
             if idx_valid(i, j+1) and S[i][j+1] <= S[i][j]: dfs(i, j+1)
             if idx_valid(i+1, j) and S[i+1][j] <= S[i][j]: dfs(i+1, j)
             if idx_valid(i-1, j) and S[i-1][j] <= S[i][j]: dfs(i-1, j)
-
+            #　でも実はまだ上下左右のdpは計算中の可能性がある
             l = dp_get(i, j-1)
             r = dp_get(i, j+1)
             u = dp_get(i+1, j)
             b = dp_get(i-1, j)
-            if max(l, r, u, b) == 3: dp[i][j] = 3
-            if 1 in [l, r, u, b] and 2 in [l, r, u, b]: dp[i][j] = 3
+            if max(l, r, u, b) == 3:
+                dp[i][j] = 3
+            if 1 in [l, r, u, b] and 2 in [l, r, u, b]:
+                dp[i][j] = 3
             else:
                 dp[i][j] = max(0, l, r, u, b)
+            # 周りが有効な状態で計算しきったかどうか。
+            if min(l, r, u, b) == -1: done[i][j] = False
+            else: done[i][j] = True
+
             return dp[i][j]
 
         ans = []
@@ -75,7 +84,10 @@ class Solution:
                     local = dfs(i, j)
                     if local >= 2:
                         ans.append([i, j])
+        logging.debug("---- dp ----")
         print_matrix(dp)
+        logging.debug("---- S ----")
+        print_matrix(S)
         return ans
 
 
