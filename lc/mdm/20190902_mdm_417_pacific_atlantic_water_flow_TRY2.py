@@ -55,27 +55,31 @@ class Solution:
             if (i == 0 or j == 0): return 1
             return 0
 
-        def dfs(i, j, parent=-1):
+        def dfs(i, j, parent=(-1, -1)):
             logging.debug("dfs(%s, %s)" % (i, j))
             if done[i][j] == 2: return dp[i][j] #調査済みならその結果を教えてやろう。
             # 自分以下でかつ未踏の地であればdfs
             done[i][j] = 1
 
             me = myself(i, j)
-            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1, me);
-            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1, me);
-            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j, me);
-            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j, me);
+            if idx_valid(i, j-1) and S[i][j-1] <= S[i][j] and done[i][j-1] == 0: dfs(i, j-1, (i,j));
+            if idx_valid(i, j+1) and S[i][j+1] <= S[i][j] and done[i][j+1] == 0: dfs(i, j+1, (i,j));
+            if idx_valid(i-1, j) and S[i-1][j] <= S[i][j] and done[i-1][j] == 0: dfs(i-1, j, (i,j));
+            if idx_valid(i+1, j) and S[i+1][j] <= S[i][j] and done[i+1][j] == 0: dfs(i+1, j, (i,j));
 
             l = dp_get(i, j-1)
             r = dp_get(i, j+1)
             u = dp_get(i-1, j)
             b = dp_get(i+1, j)
 
-            if 1 in [l, r, u, b, me, parent] and 2 in [l, r, u, b, me, parent]:
+            surroundings = [l, r, u, b, me]
+            if idx_valid(parent[0], parent[1]):
+                if S[parent[0]][parent[1]] == S[i][j]:
+                    surroundings.append(myself(parent[0], parent[1]))
+            if 1 in surroundings and 2 in surroundings:
                 dp[i][j] = 3
             else:
-                dp[i][j] = max(0, l, r, u, b, me, parent)
+                dp[i][j] = max([0] + surroundings)
 
             done[i][j] = 2
             return dp[i][j]
