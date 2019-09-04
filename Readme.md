@@ -6,9 +6,12 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+# tree
+--  20190904    ---/all  20190904_mdm_102_binary_tree_level_order_traversal tree
 # graph
-OK  20190904    all/all  20190903_mdm_200_number_of_islands
-NG  20190902    all/all  medium 20190902_mdm_417_pacific_atlantic_water_flow
+OK  20190904    all/all  20190904_hrd_128_longest_concequtive_sequence  graph
+OK  20190904    all/all  20190903_mdm_200_number_of_islands graph
+NG  20190902    all/all  medium 20190902_mdm_417_pacific_atlantic_water_flow    graph
 NG  20190826    all/all  medium 20190901_mdm_207_course_schedule    graph
 OK  20190901    all/all  medium 20190901_mdm_133_clone_graph   graph
 # dp
