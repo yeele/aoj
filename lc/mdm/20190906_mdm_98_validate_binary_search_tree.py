@@ -107,3 +107,28 @@ n2.right = n4
 
 ans = Solution().isValidBST(root)
 logging.debug("%s" % ans)
+
+
+"""
+[3,1,5,0,2,4,6]
+一応、進んでいる、テストケースは進んでは、さらに進んだケースで
+止まっているだけなので、報告性はよしとしよう
+
+"""
+root = TreeNode(3)
+n1 = TreeNode(1)
+n2 = TreeNode(5)
+root.left = n1
+root.right = n2
+n3 = TreeNode(0)
+n4 = TreeNode(2)
+n1.left = n3
+n1.right = n4
+n5 = TreeNode(4)
+n6 = TreeNode(6)
+n2.left = n5
+n2.right = n6
+
+ans = Solution().isValidBST(root)
+logging.debug("%s" % ans)
+
