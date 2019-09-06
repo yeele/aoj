@@ -40,7 +40,7 @@ class Solution:
         if root.left:
             if root.val > root.left.val and self.isValidBST(root.left, root.val):
                 if parent:
-                    if root.left.val < parent:
+                    if root.left.val > parent:
                         pass # ok
                     else:
                         return False
@@ -49,7 +49,7 @@ class Solution:
         if root.right:
             if root.val < root.right.val and self.isValidBST(root.right, root.val):
                 if parent:
-                    if root.right.val > parent:
+                    if root.right.val < parent:
                         pass # ok
                     else:
                         return False
