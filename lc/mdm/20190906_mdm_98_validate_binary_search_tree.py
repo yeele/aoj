@@ -132,3 +132,8 @@ n2.right = n6
 ans = Solution().isValidBST(root)
 logging.debug("%s" % ans)
 
+"""
+ここでtiemupということで
+https://leetcode.com/problems/validate-binary-search-tree/discuss/369680/Elegant-python-Recursion-solution
+を参照した
+"""
