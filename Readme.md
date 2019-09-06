@@ -6,6 +6,7 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+NG  20190901    ---/all  medium 20190906_mdm_105_Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal
 # tree
 --  20190904    ---/all  20190904_mdm_102_binary_tree_level_order_traversal tree
 # graph
