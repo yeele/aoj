@@ -7,10 +7,13 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # tree
---  20190904    ---/all  20190904_mdm_102_binary_tree_level_order_traversal tree
+--  20190905    ---/all  medium 20190905_mdm_105_construct_binary_tree_from_preorder_and_inorder_traversal
+OK  20190905    all/all  medium 20190905_esy_572_subtree_of_another_tree tree
+OK  20190905    all/all  medium 20190905_hrd_297_serialize_and_deserialize_binary_tree tree
+OK  20190904    all/all  medium 20190904_mdm_102_binary_tree_level_order_traversal tree
 # graph
-OK  20190904    all/all  20190904_hrd_128_longest_concequtive_sequence  graph
-OK  20190904    all/all  20190903_mdm_200_number_of_islands graph
+OK  20190904    all/all  medium 20190904_hrd_128_longest_concequtive_sequence  graph
+OK  20190904    all/all  medium 20190903_mdm_200_number_of_islands graph
 NG  20190902    all/all  medium 20190902_mdm_417_pacific_atlantic_water_flow    graph
 NG  20190826    all/all  medium 20190901_mdm_207_course_schedule    graph
 OK  20190901    all/all  medium 20190901_mdm_133_clone_graph   graph
@@ -51,6 +54,6 @@ OK  20190724    all/all medium  "200 number of island"          graph
 OK  20190705    all/all easy    "226 inverse binary tree"       recursive
 OK  20190705    all/all easy    "100 same tree"                 recursive
 OK  20190703    all/all easy    "104 max depth of tree" https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/
-OK  20190625    0/276  medium  "3sum"
 OK  20190624    23/276  medium  "1073. Adding Two Negabinary Numbers"
+OK  20190625    0/276  medium  "3sum"
 #### techseries covered by video problems (start)
