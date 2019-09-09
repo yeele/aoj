@@ -6,9 +6,11 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
---  20190907    ---/all  hard   20190907_hrd_23_merge_k_sorted_lists
-
+OK  20190909    all/all  hard   20190907_hrd_295_find_median_from_data_stream
+OK  20190907    all/all  hard   20190907_hrd_23_merge_k_sorted_lists
+OK  20190907    all/all  hard   20190907_mdm_347_top_k_frequent_elements
 # tree
+OK  20190905    all/all  medium 20190906_mdm_98_validate_binary_search_tree
 NG  20190901    ---/all  medium 20190906_mdm_105_Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal
 --  20190905    ---/all  medium 20190905_mdm_105_construct_binary_tree_from_preorder_and_inorder_traversal
 OK  20190905    all/all  medium 20190905_esy_572_subtree_of_another_tree tree
