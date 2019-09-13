@@ -63,6 +63,26 @@ class Solution:
                 tail = intervals[i][1]
         return cnt
 
+
+
+
+
+
+class Solution:
+    """
+    implement myself after reviewing the solution above
+    """
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+
+        #intervals.sort(key=)
+        # local = overlapped? or not...
+        # end(above), start(below) ovalpping??
+        return 0
+
+
+
+
+
 samples = [
     ( [[1,2],[2,3],[3,4],[1,3]], 1 ),
 ]
