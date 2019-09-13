@@ -6,6 +6,8 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+NG  20190910    all/all  medium 20190910_mdm_435_non_overlapping_intervals
+# interval
 OK  20190909    all/all  hard   20190907_hrd_295_find_median_from_data_stream
 OK  20190907    all/all  hard   20190907_hrd_23_merge_k_sorted_lists
 OK  20190907    all/all  hard   20190907_mdm_347_top_k_frequent_elements

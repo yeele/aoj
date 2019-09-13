@@ -24,19 +24,7 @@ import time
 #logging.basicConfig(level=logging.INFO, format="%(message)s")
 logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
-from collections import defaultdict
 class Solution_gaveup:
-    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        memo = defaultdict(dict)
-        for s, e in intervals:
-            for i in range(s, e):
-                memo[s].append()
-
-        return 0
-
-
-
-class Solution:
     """
     https://leetcode.com/problems/non-overlapping-intervals/discuss/371541/Python-Greedy-Solution
 
@@ -65,10 +53,7 @@ class Solution:
 
 
 
-
-
-
-class Solution:
+class Solution_botsu:
     """
     implement myself after reviewing the solution above
     """
@@ -79,6 +64,29 @@ class Solution:
         # end(above), start(below) ovalpping??
         return 0
 
+
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        if intervals is None or len(intervals) == 0: return 0
+        #intervals = sorted(intervals, key = lambda x: x[0])
+        intervals.sort(key = lambda x: x[0])
+        end = intervals[0][1]
+        overlapped = 0
+        for i in range(1, len(intervals)):
+            s, e = intervals[i]
+            if s < end:
+                overlapped += 1
+                #以下の条件で2と3は通ります！1はダメです
+                #1#end = max(e, end)
+                #2#works
+                end = min(e, end)
+                #3#worked
+                # if e < end:
+                #     end = e
+            else:
+                end = e
+        return overlapped
 
 
 
