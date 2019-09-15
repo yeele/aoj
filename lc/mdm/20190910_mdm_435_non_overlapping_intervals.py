@@ -53,7 +53,7 @@ class Solution_gaveup:
 
 
 
-class Solution_botsu:
+class Solution_botsut:
     """
     implement myself after reviewing the solution above
     """
