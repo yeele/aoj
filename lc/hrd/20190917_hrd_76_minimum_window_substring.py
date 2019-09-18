@@ -23,8 +23,10 @@ class Solution:
             if memo[idx] == -1:
                 counter+=1 # 初めて見つかったということで。
             memo[idx] = max(memo[idx], local)
-            mini = min(mini, local)
-            maxi = max(maxi, local)
+            # mini = min(mini, local)
+            # maxi = max(maxi, local) # こっちのが高速だが間違ってるのでまずは。
+            mini = min(memo) # O(T)なんんで、これだとO(N)に届かずRTEくらいそう
+            maxi = max(memo)
             if counter == len(T):
                 if (maxi+1) - mini < len(ans):
                     ans = S[mini:maxi+1]
@@ -35,6 +37,7 @@ class Solution:
 
 samples = [
     ("ADOBECODEBANC", "ABC", "BANC"),
+    ("a", "aa", ""),
 ]
 for S, T, expected in samples:
     print("-"*20)
