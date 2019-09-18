@@ -51,6 +51,21 @@ class Solution_gaveup:
                 tail = intervals[i][1]
         return cnt
 
+
+
+class Solution_botsut:
+    """
+    implement myself after reviewing the solution above
+    """
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+
+        #intervals.sort(key=)
+        # local = overlapped? or not...
+        # end(above), start(below) ovalpping??
+        return 0
+
+
+
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         if intervals is None or len(intervals) == 0: return 0
@@ -72,6 +87,7 @@ class Solution:
             else:
                 end = e
         return overlapped
+
 
 
 
