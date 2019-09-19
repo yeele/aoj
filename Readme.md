@@ -6,6 +6,12 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+# string
+OK  20190919    all/all  easy   20190919_esy_20_valid_parentheses
+OK  20190919    all/all  medium 20190919_mdm_49_group_anagram
+OK  20190919    all/all  easy   20190919_esy_242_valid_anagram
+OK  20190918    all/all  hard   20190917_hrd_76_minimum_window_substring
+NG  20190913    all/all  medium 20190913_mdm_xxx_longest_substring_replacing_k  アイデアはおもいついたが実装がむずい。
 NG  20190910    all/all  medium 20190910_mdm_435_non_overlapping_intervals
 # interval
 OK  20190909    all/all  hard   20190907_hrd_295_find_median_from_data_stream
