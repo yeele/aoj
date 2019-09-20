@@ -7,6 +7,7 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # string
+OK  20190919    all/all  easy   20190920_esy_125_valid_palindrom
 OK  20190919    all/all  easy   20190919_esy_20_valid_parentheses
 OK  20190919    all/all  medium 20190919_mdm_49_group_anagram
 OK  20190919    all/all  easy   20190919_esy_242_valid_anagram
