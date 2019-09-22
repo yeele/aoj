@@ -6,6 +6,8 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+# binary
+NG  20190922    all/all  easy   20190922_esy_371_sum_of_two_integer
 # string
 OK  20190922    all/all  medium 20190922_mdm_647_palindromic_substring
 NG  20190919    all/all  medium 20190920_mdm_5_longest_palindromic_substring
