@@ -7,6 +7,8 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # string
+OK  20190922    all/all  medium 20190922_mdm_647_palindromic_substring
+NG  20190919    all/all  medium 20190920_mdm_5_longest_palindromic_substring
 OK  20190919    all/all  easy   20190920_esy_125_valid_palindrom
 OK  20190919    all/all  easy   20190919_esy_20_valid_parentheses
 OK  20190919    all/all  medium 20190919_mdm_49_group_anagram
