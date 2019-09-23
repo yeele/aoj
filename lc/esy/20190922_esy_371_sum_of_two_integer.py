@@ -52,6 +52,15 @@ class Solution_botsu:
             b >>= 1
             i += 1
         ans &= (2**33 - 1)
+        """
+        うん、やっぱり、これで解けてたんだね
+        マイナスのコンピューターでの扱いがわかれば直ぐ解けてたね
+        if ans > 0xff:
+            print("dekai")
+            ans = (0xff - (ans & 0xff) + 1) * -1
+        else:
+            print("chisai")
+        """
         return ans
 
 
@@ -135,5 +144,6 @@ samples = [
 #     print(ans)
 
 for a, b, expected in samples:
-    ans = Solution().getSum(a, b)
+    #ans = Solution().getSum(a, b)
+    ans = Solution_botsu().getSum(a, b)
     print(ans)
