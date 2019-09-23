@@ -7,6 +7,7 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # binary
+OK  20190922    all/all  medium 2019092 3_mdm_338_counting_bits
 NG  20190922    all/all  easy   20190922_esy_371_sum_of_two_integer
 # string
 OK  20190922    all/all  medium 20190922_mdm_647_palindromic_substring
