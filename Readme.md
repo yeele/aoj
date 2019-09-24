@@ -6,8 +6,10 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
-# binary
+# matrix
+OK  20190924    all/all  medium 20190924_mdm_54_spiral_matrix
 OK  20190924    all/all  medium 20190924_mdm_74_set_matrix_zeros
+# binary
 OK  20190923    all/all  easy   20190923_esy_190_reverse_bits
 OK  20190923    all/all  easy   20190923_esy_268_missing_number
 OK  20190923    all/all  medium 20190923_mdm_338_counting_bits
