@@ -6,6 +6,8 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+# linked list
+OK  20190923    all/all  easy   20190925_esy_206_reverse_linked_list
 # matrix
 OK  20190924    all/all  medium 20190925_mdm_79_word_search
 NG  20190924    all/all  medium 20190924_mdm_48_rotate_image  could solved myself, but took too long(60 mins)
