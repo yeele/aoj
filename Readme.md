@@ -7,6 +7,7 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # matrix
+OK  20190924    all/all  medium 20190925_mdm_79_word_search
 NG  20190924    all/all  medium 20190924_mdm_48_rotate_image  could solved myself, but took too long(60 mins)
 OK  20190924    all/all  medium 20190924_mdm_54_spiral_matrix
 OK  20190924    all/all  medium 20190924_mdm_74_set_matrix_zeros
