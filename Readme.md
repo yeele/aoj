@@ -7,6 +7,7 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # linked list
+OK  20190928    all/all  easy   20190928_esy_21_merge_two_sorted_linked_list
 OK  20190927    all/all  easy   20190927_esy_141_linked_list_cycle
 OK  20190923    all/all  easy   20190925_esy_206_reverse_linked_list
 # matrix
