@@ -7,6 +7,8 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # array
+NG  20191008    all/all  medium 20191008_esy_152_maxium_product_subarray
+NG  20191007    all/all  easy   20191007_esy_53_maxium_subarray
 OK  20191006    all/all  easy   20191002_esy_122_best_time_buy_and_sell_stock_ii
 OK  20190927    all/all  easy   20191002_esy_121_best_time_buy_and_sell_stock
 # linked list
