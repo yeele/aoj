@@ -6,6 +6,9 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
+# array
+OK  20191006    all/all  easy   20191002_esy_122_best_time_buy_and_sell_stock_ii
+OK  20190927    all/all  easy   20191002_esy_121_best_time_buy_and_sell_stock
 # linked list
 OK  20190928    all/all  medium 20190928_mdm_143_reorder_list
 OK  20190928    all/all  medium 20190928_mdm_19_remove_nth_from_end
