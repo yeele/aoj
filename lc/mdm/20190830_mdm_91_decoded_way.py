@@ -24,6 +24,7 @@ import time
 logging.basicConfig(level=logging.WARN, format="%(message)s")
 #logging.basicConfig(level=logging.INFO, format="%(message)s")
 #logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+
 class Solution:
     """
     1.  O(2^(n/2)) => O(2^n) = １文字とるパターンと２文字とるパターンでの再帰
