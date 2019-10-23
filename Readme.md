@@ -4,7 +4,20 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
-
+# random leetcode questions :)
+OK  20191023    all/all  easy   20191021_esy_67_add_binary.py
+NG  20191023    all/all  easy   20191023_esy_189_rotate_array.py
+# bash
+OK  20191023    all/all  easy   20191023_esy_193_valid_phone_number.bash    bash regex
+# dp
+NG  20191023    all/all  medium 20191021_mdm_120_triangles.py   dp
+NG  20191023    all/all  medium 20191021_mdm_96_unique_binary_search_tree.py    dp
+# stack
+OK  20191023    all/all  medium 20191023_mdm_71_simplify_path
+#
+# I am done with https://www.teamblind.com/article/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU
+# Now, in above, I answer random leetcode and label each questions like array, dp, etc
+# so that I can have summary page, collecting bunch of leetcode questions :)
 #### 75 problems (start)
 # array
 NG  20191018    all/all  medium 20191018_mdm_15_3sum
