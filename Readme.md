@@ -5,7 +5,14 @@ OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same 
 
 OK/NG   date    passed  level   name    category
 # random leetcode questions :)
+--  20191025    all/all  medium 20191025_mdm_1004_max_consecutive_ones_iii
+# recursive
+OK  20191025    all/all  medium 20191025_mdm_397_integer_replacement    recursive
+# hash
+OK  20191025    all/all  easy   20191025_esy_594_longest_harmonious_subsequence hash
+# bit
 OK  20191023    all/all  easy   20191021_esy_67_add_binary.py
+# array
 NG  20191023    all/all  easy   20191023_esy_189_rotate_array.py
 # bash
 OK  20191023    all/all  easy   20191023_esy_193_valid_phone_number.bash    bash regex
