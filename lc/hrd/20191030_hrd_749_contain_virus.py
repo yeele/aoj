@@ -81,6 +81,39 @@ class Solution:
         #2 dfs on 1 region and identify max -1
         # break if there's only one region to save.
 
+        visitted = [[0]*n for _ in range(m) ] # reset visitted
+        stack = []
+        ones = []
+        stack.append((0, 0))
+        max_wall = 0
+        max_cordinate = (-1, -1)
+        while len(stack) > 0:
+            coordinate = stack.pop()
+            (x, y) = coordinate
+            visitted[x][y] = 1
+            if grid[x][y] == 1:
+                stack2 = [(x, y)]
+                ones.append((x, y))
+                local = set()
+                while len(stack2):
+                    coordinate2 = stack2.pop()
+                    (x2, y2) = coordinate2
+                    for _i, _j in d4_generator(x2, y2):
+                        if grid[_i][_j] < 0:
+                            local.add((_i, _j))
+                        else:
+                            if visitted[_i][_j] == 0:
+                                stack2.append((_i, _j))
+                        visitted[_i][_j] = 1
+                local_walls = sum([abs(grid[__i][__j]) for __i, __j in ones])
+                if local_walls > max_wall:
+                    max_wall = local_walls
+                    max_cordinate = (x, y)
+            for _i, _j in d4_generator(x, y):
+                if visitted[_i][_j] == 0:
+                    stack.append((_i, _j))
+        print("max_wall:%s, max_cordiate:%s" % (max_wall, max_cordinate))
+
         #3 add the max on your walls_count
         # walls can be expressed with 2.
 
