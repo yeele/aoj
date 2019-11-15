@@ -7,7 +7,7 @@ OK/NG   date    passed  level   name    category
 
 #### 75 problems (start)
 # array
-OK  20191009    all/all  medium 20191009_mdm_33_search_in_rotated_sorted_array 
+OK  20191009    all/all  medium 20191009_mdm_33_search_in_rotated_sorted_arrayljd 
 OK  20191009    all/all  medium 20191008_mdm_153_find_minimum_in_rotated_sorted_array
 NG  20191009    all/all  medium 20191008_esy_152_maxium_product_subarray
 NG  20191007    all/all  easy   20191007_esy_53_maxium_subarray
