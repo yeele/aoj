@@ -4,12 +4,34 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
-
+# random leetcode questions :)
+--  20191025    all/all  medium 20191025_mdm_1004_max_consecutive_ones_iii
+# recursive
+OK  20191025    all/all  medium 20191025_mdm_397_integer_replacement    recursive
+# hash
+OK  20191025    all/all  easy   20191025_esy_594_longest_harmonious_subsequence hash
+# bit
+OK  20191023    all/all  easy   20191021_esy_67_add_binary.py
+# array
+NG  20191023    all/all  easy   20191023_esy_189_rotate_array.py
+# bash
+OK  20191023    all/all  easy   20191023_esy_193_valid_phone_number.bash    bash regex
+# dp
+NG  20191023    all/all  medium 20191021_mdm_120_triangles.py   dp
+NG  20191023    all/all  medium 20191021_mdm_96_unique_binary_search_tree.py    dp
+# stack
+OK  20191023    all/all  medium 20191023_mdm_71_simplify_path
+#
+# I am done with https://www.teamblind.com/article/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU
+# Now, in above, I answer random leetcode and label each questions like array, dp, etc
+# so that I can have summary page, collecting bunch of leetcode questions :)
 #### 75 problems (start)
 # array
-OK  20191009    all/all  medium 20191009_mdm_33_search_in_rotated_sorted_arrayljd 
+ 
+NG  20191018    all/all  medium 20191018_mdm_15_3sum
+OK  20191009    all/all  medium 20191009_mdm_33_search_in_rotated_sorted_array 
 OK  20191009    all/all  medium 20191008_mdm_153_find_minimum_in_rotated_sorted_array
-NG  20191009    all/all  medium 20191008_esy_152_maxium_product_subarray
+NG  20191009    all/all  medium t20191008_esy_152_maxium_product_subarray
 NG  20191007    all/all  easy   20191007_esy_53_maxium_subarray
 OK  20191006    all/all  easy   20191002_esy_122_best_time_buy_and_sell_stock_ii
 OK  20190927    all/all  easy   20191002_esy_121_best_time_buy_and_sell_stock
