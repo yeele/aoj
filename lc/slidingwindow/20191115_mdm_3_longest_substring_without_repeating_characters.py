@@ -33,8 +33,6 @@ class Solution:
                 maxi = max(maxi, r - l + 1)
                 # move r +1
                 r += 1
-
-
         return maxi
 
 
