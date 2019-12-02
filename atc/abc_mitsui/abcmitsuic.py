@@ -12,64 +12,64 @@ import re
 import math
 
 sys.setrecursionlimit(1000000)
-#print (sys.getrecursionlimit())
-# def rec(zan, dp):
-#     # if zan % 100 == 0 or \
-#     #         zan % 101 == 0 or \
-#     #         zan % 102 == 0 or \
-#     #         zan % 103 == 0 or \
-#     #         zan % 104 == 0 or \
-#     #         zan % 105 == 0:
-#     #     print("zan {}".format(zan))
-#     if zan == 0:
-#         #print("hogaaaaaaaaaaaaaahhh ! {}".format(zan))
-#         return True
-#     elif zan < 0:
-#         return False
-#     else:
-#         if zan in dp: return dp[zan]
-#         # if zan-100 >= 0:
-#         #     a0 = rec(zan-100, dp)
-#         #     dp[zan -100] = a0
-#         # if zan-101 >= 0:
-#         #     a1 = rec(zan-101, dp)
-#         #     dp[zan -101] = a1
-#         # if zan-102 >= 0:
-#         #     a2 = rec(zan-102, dp)
-#         #     dp[zan -102] = a2
-#         # if zan-103 >= 0:
-#         #     a3 = rec(zan-103, dp)
-#         #     dp[zan -103] = a3
-#         # if zan-104 >= 0:
-#         #     a4 = rec(zan-104, dp)
-#         #     dp[zan -104] = a4
-#         # if zan-105 >= 0:
-#         #     a5 = rec(zan-105, dp)
-#         #     dp[zan -105] = a5
-#
-#         a0 = rec(zan-100, dp)
-#         dp[zan -100] = a0
-#         a1 = rec(zan-101, dp)
-#         dp[zan -101] = a1
-#         a2 = rec(zan-102, dp)
-#         dp[zan -102] = a2
-#         a3 = rec(zan-103, dp)
-#         dp[zan -103] = a3
-#         a4 = rec(zan-104, dp)
-#         dp[zan -104] = a4
-#         a5 = rec(zan-105, dp)
-#         dp[zan -105] = a5
-#         #print(a0, a1, a2, a3, a4, a5)
-#         ans = any(
-#           [a0, a1, a2, a3, a4, a5]
-#         )
-#         dp[zan] = ans
-#         return ans
-# def sol(n):
-#     dp = [False] * (n+5)
-#     rec(n, dp)
-#     #print("dp[%s] = %s" % (n, dp[n]))
-#     return '1' if dp[n] else '0'
+print (sys.getrecursionlimit())
+def rec(zan, dp):
+    # if zan % 100 == 0 or \
+    #         zan % 101 == 0 or \
+    #         zan % 102 == 0 or \
+    #         zan % 103 == 0 or \
+    #         zan % 104 == 0 or \
+    #         zan % 105 == 0:
+    #     print("zan {}".format(zan))
+    if zan == 0:
+        #print("hogaaaaaaaaaaaaaahhh ! {}".format(zan))
+        return True
+    elif zan < 0:
+        return False
+    else:
+        if zan in dp: return dp[zan]
+        # if zan-100 >= 0:
+        #     a0 = rec(zan-100, dp)
+        #     dp[zan -100] = a0
+        # if zan-101 >= 0:
+        #     a1 = rec(zan-101, dp)
+        #     dp[zan -101] = a1
+        # if zan-102 >= 0:
+        #     a2 = rec(zan-102, dp)
+        #     dp[zan -102] = a2
+        # if zan-103 >= 0:
+        #     a3 = rec(zan-103, dp)
+        #     dp[zan -103] = a3
+        # if zan-104 >= 0:
+        #     a4 = rec(zan-104, dp)
+        #     dp[zan -104] = a4
+        # if zan-105 >= 0:
+        #     a5 = rec(zan-105, dp)
+        #     dp[zan -105] = a5
+
+        a0 = rec(zan-100, dp)
+        dp[zan -100] = a0
+        a1 = rec(zan-101, dp)
+        dp[zan -101] = a1
+        a2 = rec(zan-102, dp)
+        dp[zan -102] = a2
+        a3 = rec(zan-103, dp)
+        dp[zan -103] = a3
+        a4 = rec(zan-104, dp)
+        dp[zan -104] = a4
+        a5 = rec(zan-105, dp)
+        dp[zan -105] = a5
+        #print(a0, a1, a2, a3, a4, a5)
+        ans = any(
+          [a0, a1, a2, a3, a4, a5]
+        )
+        dp[zan] = ans
+        return ans
+def sol_topdown_but_TLE(n):
+    dp = [False] * (n+5)
+    rec(n, dp)
+    #print("dp[%s] = %s" % (n, dp[n]))
+    return '1' if dp[n] else '0'
 
 
 def sol(n):
