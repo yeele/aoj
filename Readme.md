@@ -4,6 +4,7 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+NG  20191223    all/all  medium 20191223 20191223_mdm_809_expressive_words　hashmap
 # random leetcode questions :)
 --  20191025    all/all  medium 20191025_mdm_1004_max_consecutive_ones_iii
 # recursive
@@ -27,7 +28,6 @@ OK  20191023    all/all  medium 20191023_mdm_71_simplify_path
 # so that I can have summary page, collecting bunch of leetcode questions :)
 #### 75 problems (start)
 # array
- 
 NG  20191018    all/all  medium 20191018_mdm_15_3sum
 OK  20191009    all/all  medium 20191009_mdm_33_search_in_rotated_sorted_array 
 OK  20191009    all/all  medium 20191008_mdm_153_find_minimum_in_rotated_sorted_array
