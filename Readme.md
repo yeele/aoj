@@ -4,7 +4,9 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+OK  20191224    all/all  medium 20191224 20191224_mdm_94_binary_tree_inorder_traversal binary-tree
 NG  20191223    all/all  medium 20191223 20191223_mdm_809_expressive_words　hashmap
+NG  20191223    all/all  medium 20191223_mdm_pizza_shop.py bisect
 # random leetcode questions :)
 --  20191025    all/all  medium 20191025_mdm_1004_max_consecutive_ones_iii
 # recursive
