@@ -4,7 +4,7 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
-
+OK  20191228    all/all  medium 20191228 20191228_esy_987_vertical_order_traversal_of_a_binary_tree.py tree
 OK  20191224    all/all  medium 20191224 20191224_esy_5889_n-ary_tree_preorder_traversal.py
 OK  20191224    all/all  medium 20191224 20191224_mdm_94_binary_tree_inorder_traversal binary-tree
 NG  20191223    all/all  medium 20191223 20191223_mdm_809_expressive_words　hashmap
