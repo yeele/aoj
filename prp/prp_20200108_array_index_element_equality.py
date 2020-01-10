@@ -71,7 +71,7 @@ def index_equals_value_search(arr):
                 rec(i, pivot)
             else:
                 rec(pivot+1, j)  # 1+1= 2, 3
-    rec(0, len(arr))    
+    rec(0, len(arr))
     return -1 if mini[0] == sys.maxsize else mini[0]
 
 
