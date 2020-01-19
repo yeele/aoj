@@ -1,0 +1,71 @@
+#-*- coding: utf-8
+#  -*-
+"""
+oj dl https://atcoder.jp/contests/abc116/tasks/abc116_d -d test-d
+oj test -d test-d -c "python abc116d.py"
+oj test -d test-d -c "python abc116d.py" test-d/sample-3.in
+"""
+from collections import defaultdict
+import sys
+import math
+from datetime import datetime
+
+def sol(N):
+    a = 0
+    for n in range(1, N+1):
+        if n < 10:
+            a += 1
+        else:
+            # nあが同じ数字の場合
+            head = int(str(n)[0])
+            tail = int(str(n)[-1])
+            if head == tail:
+                a += 3
+            else:
+                if (tail * 10 + head) <= N:
+                    if tail != 0 and head != 0:
+                        a += 1
+    return a
+
+
+
+
+
+
+do_submit = True
+#do_submit = False
+
+def input_parse(input_str):
+    lines = [x.strip() for x in input_str.split("\n") if x.strip()]
+    parsed_lines = [list(map(str, line.split())) for line in lines]
+    print(parsed_lines)
+    n = int(parsed_lines[0][0])
+    k = int(parsed_lines[0][1])
+    S = parsed_lines[1][0]
+    return n, k, S
+
+
+if not do_submit:
+    a, b, c = input_parse("""
+    3 1
+    ABC
+    """)
+    print(sol(a, b, c))
+
+    a, b, c = input_parse("""
+    4 3
+    CABA
+    """)
+    print(sol(a, b, c))
+
+else:
+    #a, b = list(map(int, input().split()))
+    N = int(input().strip())
+    #S = list(map(int, input().split()))
+    # a = int(input())
+    # b = int(input())
+    # T = input()
+    print(sol(N))
+    # S = input().strip()
+    # print(sol(S))
+
