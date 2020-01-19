@@ -4,6 +4,9 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+OK  20200108    all/all  medium 20200108 20200108_mdm_64_minimum_path_sum dp
+NG  20200107    all/all  hard 20200107 20200107_hrd_123_best_time_to_buy_and_sell_stock_iii dp
+OK  20191230    all/all  hard 20191230 20191230_esy_543_diameter_of_binary_tree
 OK  20191230    all/all  hard 20191230 20191230_hrd_124_binary_tree_maximum_path_sum.py tree collection
 OK  20191229    all/all  medium 20191229 20191229_esy_112_path_sum
 OK  20191229    all/all  medium 20191229 20191228_mdm_814_binary_tree_pruning
