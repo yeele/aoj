@@ -4,6 +4,8 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+OK  20200122    all/all  medium 2020012220200122_mdm_720_longest_word_in_dictionary
+OK  20200122    all/all  medium 20200122 20200122_mdm_208_implememnt_trie
 OK  20200121    all/all  medium 20200121 220200121_mdm_399_evaluate_division
 NG  20200121    all/all  medium 20200121 20200119_mdm_802_find_eventual_safe_states
 OK  20200108    all/all  medium 20200108 20200108_mdm_64_minimum_path_sum dp
