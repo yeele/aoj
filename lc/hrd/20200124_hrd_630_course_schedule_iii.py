@@ -6,7 +6,7 @@ import sys
 
 class Solution:
     def scheduleCourse(self, courses: List[List[int]]) -> int:
-        max_w = max([ tup[1] for tup in courses ])
+        max_w = max([ tup[1] for tup in courses ]) + 1
         N = len(courses)
         dp = [[0] * max_w for _ in range(N)]
         def dp_valid(i, j):
@@ -21,8 +21,10 @@ class Solution:
         for i in range(N):       # iは商品どれ
             for j in range(max_w): # jは現在の重さ
                 constrain = courses[i][1]
-                if j <= constrain: a = DP(i-1, j-courses[i][0]) + 1
-                else: a = DP(i-1, j)
+                if j <= constrain and j-courses[i][0] >= 0:
+                    a = DP(i-1, j-courses[i][0]) + 1
+                else:
+                    a = DP(i-1, j)
                 b = DP(i, j-1)
                 dp[i][j] = max(a, b)
 
@@ -30,9 +32,11 @@ class Solution:
 
 
 samples = [
-    ([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]),
+    ([[100, 200], [200, 1300], [1000, 1250], [2000, 3200]], 3),
+    ([[100,2],[32,50]], 1),
+    ([[1,2],[2,3]], 2)
 ]
-for S in samples:
+for S, expected in samples:
     print("-"*20)
     ans = Solution().scheduleCourse(S)
     print("(%s) = %s as expected!" % (S, ans))
