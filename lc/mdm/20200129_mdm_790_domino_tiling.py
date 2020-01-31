@@ -15,12 +15,6 @@ def timeit(func):
 from collections import defaultdict
 import time
 
-# https://leetcode.com/problems/delete-and-earn/discuss/479017/Simple-Python-DP
-# ヒントにしたし
-# https://leetcode.com/problems/delete-and-earn/solution/
-# もみたけど、方向はよくて、ヒントをみて自力でclearした。
-# 特に、バグがちゃんとみつけれてよかった。
-# バグはここにあった！dp[i-1]もわすれてはいけない！
 class Solution:
     def numTilings(self, n: int) -> int:
         if n == 0: return 0
