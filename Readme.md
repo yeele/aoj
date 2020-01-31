@@ -4,6 +4,10 @@
 OK/NG => NG means I couldn't solve it by my self, so I should re-visit the same question again.
 
 OK/NG   date    passed  level   name    category
+NG  20200126    all/all  medium 20200126 20200125_esy_53_maximum_subarray.py
+OK  20200126    all/all  medium 20200126 20200125_esy_70_climbing_stairs.py
+OK  20200126    all/all  medium 20200126 20200125_esy_746_min_cost_climbing_stairs.py
+OK  20200126    all/all  medium 20200126 20200126_esy_1137_nth_tribonacci_number.py
 NG  20200124    all/all  medium 20200124 20200123_hrd_630_course_schedule_iii
 NG  20200123    all/all  medium 20200123 20200123_mdm_785_is_graph_bipartite
 OK  20200122    all/all  medium 20200122 20200122_mdm_720_longest_word_in_dictionary
