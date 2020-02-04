@@ -50,3 +50,41 @@ uf = UnionFind(6)
 print(uf.parents)
 
 uf.union(0, 2)
+
+
+
+
+
+
+
+
+
+
+
+
+class unionfind():
+    def __init__(self, n):
+        self.n = n
+        self.pars = [-1] * n # 親のindexか、自信が親の場合は-(要素数)
+
+    def find(self, x):
+        if self.pars[x] < 0:
+            return x
+        else:
+            # 親が根元ではないので、根元を探す旅
+            oya = self.pars[x]
+            #　#これが経路圧縮。なくてもうごくよ。有ると速い。
+            # self.pars[x] = self.find[oya]; return self.pars[x]
+            return self.find(oya)
+
+    def union(self, x, y):
+        X = self.find(x) # Xはxの親である
+        Y = self.find(y)
+        if X == Y: return
+
+        # 親のマージ。親のグループの小さい方に、大き方を足したいので。
+        if self.pars[X] > self.pars[Y]:
+            X, Y = Y, X
+
+        self.pars[X] += self.pars[Y]
+        self.pars[Y] = X
