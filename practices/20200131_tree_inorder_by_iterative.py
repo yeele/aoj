@@ -6,20 +6,29 @@ class Node:
         self.left = None
         self.right = None
 
-def traverse(node):
+def inorder_traverse(node):
     if node is None: return
     stack = []
-    curr = node
+    curr = node # currはヤンキーです
     while curr is not None or len(stack) > 0:
-        if curr:
-            stack.append(curr)
-            curr = curr.left
-        else:
-            curr = stack.pop()
-            print(curr.val)
-            if curr.right:
-                stack.append(curr.right)
-            curr = curr.right
+        # 3, 4, 4, 5, 11, 7, 7
+        # []
+        if curr: # ヤンキーは帰路にいます
+            stack.append(curr)   # 左の道に行くんだけど、帰ってくる時の目印としてツバを吐く
+            curr = curr.left   # 左にすすんだらぁ！
+        else: # どうやら、行き止まりでしたね。
+            curr = stack.pop() # 一個前、そうそう、ツバをつけたところに戻るぜ。
+            print(curr.val)   # ここで、一言！
+            curr = curr.right # 左はさっき行ったから、右いくからな！
+
+"""
+   5
+  /  \
+ 3     7  
+  \   /
+  4  11
+"""
+# 3, 4, 5, 11, 7
 
 root = Node(5)
 n1 = Node(3)
