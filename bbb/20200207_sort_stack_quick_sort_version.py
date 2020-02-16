@@ -183,12 +183,19 @@ iはpivotより小さい数を見つけた時のポインター
 
 
 def partition(S, s, e, p):
+    # [1, -3, 9, 0, 2, 1], s=0, e=5, p=3; 0
     if e - s <= 1:
         return S
     i, j = s, s
     if S[i] == S[p]: i += 1
     while j <= e:
         #pivotより小さければiに彫り込む
+        """
+                   P
+             i          
+        [-3, 0, 9, 1, 2, 1]
+                         j
+        """
         if S[j] < S[p]:
             S[i], S[j] = S[j], S[i]
             i += 1
@@ -198,7 +205,7 @@ def partition(S, s, e, p):
     if p < i:
         S[i-1], S[p] = S[p], S[i-1]
     else:
-        S[i], S[p] = S[p], S[i-1]
+        S[i], S[p] = S[p], S[i]
     return S
 
 print("--- test partition ---")
@@ -213,3 +220,17 @@ print(partition(S, 0, len(S)-1, 0))
 
 S = [1, -3, 9, 0, 2, 1]
 print(partition(S, 0, len(S)-1, 3))
+
+
+def qsort2(S, i, j):
+    p = pivot(i, j)
+    if p:
+        S = partition(S, i, j, p)
+        print(p, S)
+        qsort2(S, i, p-1)
+        qsort2(S, p+1, j)
+    return S
+
+S = [1, -3, 9, 0, 2, 1]
+#T = qsort2(S, 0, len(S)-1)
+print(T)
